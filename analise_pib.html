@@ -149,9 +149,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#objetivo-do-projeto" id="toc-objetivo-do-projeto" class="nav-link active" data-scroll-target="#objetivo-do-projeto">Objetivo do Projeto</a></li>
   <li><a href="#pacotes-usados" id="toc-pacotes-usados" class="nav-link" data-scroll-target="#pacotes-usados">Pacotes Usados</a></li>
   <li><a href="#relação-de-impostos-e-as-regiões-do-brasil" id="toc-relação-de-impostos-e-as-regiões-do-brasil" class="nav-link" data-scroll-target="#relação-de-impostos-e-as-regiões-do-brasil">Relação de Impostos e as Regiões do Brasil</a></li>
-  <li><a href="#gráfico-de-anamorfose-relação-do-pib-com-o-ideb" id="toc-gráfico-de-anamorfose-relação-do-pib-com-o-ideb" class="nav-link" data-scroll-target="#gráfico-de-anamorfose-relação-do-pib-com-o-ideb">Gráfico de Anamorfose (Relação do PIB com o IDEB)</a></li>
+  <li><a href="#gráfico-de-anamorfose-relação-do-pib-com-o-ideb" id="toc-gráfico-de-anamorfose-relação-do-pib-com-o-ideb" class="nav-link" data-scroll-target="#gráfico-de-anamorfose-relação-do-pib-com-o-ideb">Gráfico de Anamorfose (Relação do PIB com o Ideb)</a></li>
   <li><a href="#conjunto-de-gráficos-do-idh" id="toc-conjunto-de-gráficos-do-idh" class="nav-link" data-scroll-target="#conjunto-de-gráficos-do-idh">Conjunto de Gráficos do IDH</a></li>
-  <li><a href="#relação-entre-pib-e-índice-gini" id="toc-relação-entre-pib-e-índice-gini" class="nav-link" data-scroll-target="#relação-entre-pib-e-índice-gini">Relação entre PIB e Índice Gini</a></li>
+  <li><a href="#relação-entre-idh-e-índice-gini" id="toc-relação-entre-idh-e-índice-gini" class="nav-link" data-scroll-target="#relação-entre-idh-e-índice-gini">Relação entre IDH e Índice Gini</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
   <li><a href="#conclusão" id="toc-conclusão" class="nav-link" data-scroll-target="#conclusão">Conclusão</a></li>
   </ul>
 </nav>
@@ -185,47 +186,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="pacotes-usados" class="level2">
 <h2 class="anchored" data-anchor-id="pacotes-usados">Pacotes Usados</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.0     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geobr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Loading required namespace: sf</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cartogram)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Linking to GEOS 3.11.2, GDAL 3.8.2, PROJ 9.3.1; sf_use_s2() is TRUE</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'cowplot'
-
-The following object is masked from 'package:lubridate':
-
-    stamp</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(geobr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cartogram)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cowplot)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <hr>
 </section>
 <section id="relação-de-impostos-e-as-regiões-do-brasil" class="level2">
 <h2 class="anchored" data-anchor-id="relação-de-impostos-e-as-regiões-do-brasil">Relação de Impostos e as Regiões do Brasil</h2>
-<p>Analisar a relação impostos/PIB ajuda a compreender o quanto cada UF contribui para a arrecadação levando em conta sua produção anual. A partir do gráfico, observa-se que tal relação mudou muito pouco nas últimas duas décadas, portanto, um aumento do PIB estadual causa um aumento similar da arrecadação por impostos.</p>
+<p>Analisar a relação impostos/PIB ajuda a compreender o quanto cada UF contribui para a arrecadação levando em conta sua produção anual. A partir do gráfico, observa-se que tal relação mudou muito pouco nas últimas duas décadas, portanto, um aumento do PIB estadual causa um aumento similar da arrecadação por impostos. Nota-se, no entanto, que algumas regiões vem se distanciado dessa relação. Nos últimos anos, na região Norte, por exemplo, o aumento do PIB da regiãonnão foi acompanhado de um aumento dos impostos arrecadados.</p>
 <div class="cell">
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using method = 'loess' and formula = 'y ~ x'</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -236,8 +208,9 @@ The following object is masked from 'package:lubridate':
 </div>
 </section>
 <section id="gráfico-de-anamorfose-relação-do-pib-com-o-ideb" class="level2">
-<h2 class="anchored" data-anchor-id="gráfico-de-anamorfose-relação-do-pib-com-o-ideb">Gráfico de Anamorfose (Relação do PIB com o IDEB)</h2>
+<h2 class="anchored" data-anchor-id="gráfico-de-anamorfose-relação-do-pib-com-o-ideb">Gráfico de Anamorfose (Relação do PIB com o Ideb)</h2>
 <p>A anamorfose é um tipo de análise por cartograma que evidencia uma variável em função do tamanho do território escolhido. No caso, o PIB distorce a área de cada UF de acordo com sua contribuição nacional.</p>
+<p>Nota-se que o PIB pouco se relaciona com níveis melhores de educação. Apesar disso, São Paulo se lidera em ambas as áreas e, pelo lado do Ideb, Ceará, Goiás e Paraná também se destacam, apesar da baixa representação no PIB do país.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -260,8 +233,8 @@ The following object is masked from 'package:lubridate':
 </div>
 </div>
 </section>
-<section id="relação-entre-pib-e-índice-gini" class="level2">
-<h2 class="anchored" data-anchor-id="relação-entre-pib-e-índice-gini">Relação entre PIB e Índice Gini</h2>
+<section id="relação-entre-idh-e-índice-gini" class="level2">
+<h2 class="anchored" data-anchor-id="relação-entre-idh-e-índice-gini">Relação entre IDH e Índice Gini</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -272,9 +245,15 @@ The following object is masked from 'package:lubridate':
 </div>
 </div>
 </section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<p>Os gráficos que relacionam PIB com o IDH e suas subáreas demonstram que, apesar das desigualdades que estão inseridas nas duas áreas, não observa-se forte correlação entre elas. O que é visível é que as regiões Norte e Nordeste não obtiveram destaque em nenhum dos comparativos.</p>
+<p>A relação entre o IDH e o Índice de Gini faz-se importante no contexto de grande desigualdade interegional do país. Mas, para além disso, é analisado se um índice que mede desigualdade também possui dispersão entre os estados brasileiros.</p>
+<p>O resultado encontrado é que há, sim, diferentes níveis de desigualdade no país, e estão fortemente correlacionados à qualidade de vida da unidade federativa: estados com pior IDH, presentes nas regiões Norte e Nordeste, mostram-se também os mais desiguais, enquanto a Região Sul encontra-se no outro extremo.</p>
+</section>
 <section id="conclusão" class="level2">
 <h2 class="anchored" data-anchor-id="conclusão">Conclusão</h2>
-<p>O estudo do PIB brasileiro em seus diferentes setores produtivos, aliado a indicadores socioeconômicos como IDH, expectativa de vida, escolaridade e frequência escolar, permite visualizar disparidades e possíveis caminhos para o desenvolvimento regional. A análise de mapas e anamorfose traz insights sobre a concentração de riqueza em determinados estados, enquanto o cruzamento com dados como o IDEB explora a relação entre desenvolvimento econômico e educação.</p>
+<p>O estudo do PIB brasileiro em seus diferentes setores produtivos, aliado a indicadores socioeconômicos como IDH, expectativa de vida, escolaridade e frequência escolar, permite visualizar disparidades e possíveis caminhos para o desenvolvimento regional. A análise de gráficos e mapas traz insights sobre a concentração de riqueza em determinados estados ao cruzar dados como o Ideb, IDH e PIB, explorando a relação entre desenvolvimento econômico e qualidade de vida.</p>
 
 
 </section>

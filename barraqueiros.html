@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -150,13 +116,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a></li>
-  <li><a href="#gráficos" id="toc-gráficos" class="nav-link" data-scroll-target="#gráficos"><strong>Gráficos</strong></a>
+  <li><a href="#introdução" id="toc-introdução" class="nav-link active" data-scroll-target="#introdução">Introdução</a>
   <ul class="collapse">
   <li><a href="#receita-x-horas-trabalhadas-alta-temporada" id="toc-receita-x-horas-trabalhadas-alta-temporada" class="nav-link" data-scroll-target="#receita-x-horas-trabalhadas-alta-temporada">Receita x Horas Trabalhadas (Alta Temporada)</a></li>
+  </ul></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a>
+  <ul class="collapse">
   <li><a href="#receita-x-outra-ocupação-baixa-temporada" id="toc-receita-x-outra-ocupação-baixa-temporada" class="nav-link" data-scroll-target="#receita-x-outra-ocupação-baixa-temporada">Receita x Outra Ocupação (Baixa Temporada)</a></li>
   </ul></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a></li>
   <li><a href="#correlação-entre-receita-e-horas-trabalhadas" id="toc-correlação-entre-receita-e-horas-trabalhadas" class="nav-link" data-scroll-target="#correlação-entre-receita-e-horas-trabalhadas"><strong>Correlação entre Receita e Horas Trabalhadas</strong></a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a></li>
   <li><a href="#conclusão" id="toc-conclusão" class="nav-link" data-scroll-target="#conclusão"><strong>Conclusão</strong></a></li>
   </ul>
 </nav>
@@ -185,25 +155,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introdução" class="level2">
 <h2 class="anchored" data-anchor-id="introdução">Introdução</h2>
-<p>Este projeto analisa os determinantes da renda dos trabalhadores barraqueiros da praia de Copacabana. Foram considerados os horários de chegada e saída dos trabalhadores, além da existência de outra ocupação.</p>
-</section>
-<section id="gráficos" class="level2">
-<h2 class="anchored" data-anchor-id="gráficos"><strong>Gráficos</strong></h2>
+<p>Este projeto buscou analisar os determinantes da renda dos trabalhadores barraqueiros da praia de Copacabana. Foram considerados os horários de chegada e saída dos trabalhadores, além da existência de outra ocupação.</p>
 <section id="receita-x-horas-trabalhadas-alta-temporada" class="level3">
 <h3 class="anchored" data-anchor-id="receita-x-horas-trabalhadas-alta-temporada">Receita x Horas Trabalhadas (Alta Temporada)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>grafico.alta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: The following aesthetics were dropped during statistical transformation:
-colour.
-ℹ This can happen when ggplot fails to infer the correct grouping structure in
-  the data.
-ℹ Did you forget to specify a `group` aesthetic or to convert a numerical
-  variable into a factor?</code></pre>
-</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -213,10 +168,13 @@ colour.
 </div>
 </div>
 </section>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+<p>A partir do gráfico, nota-se que há uma tendência que mais horas trabalhadas sejam acompanhadas de maior receita na alta temporada, independente se o trabalhador possui ou não outra ocupação. Comprova-se, também, que ter outra ocupação limita o número de horas trabalhadas, apesar de ainda elevado - acima de 10 horas para todos os trabalhadores. No entanto, não há aparente correlação entre possuir uma segunda ocupação e o rendimento do trabalho na praia.</p>
 <section id="receita-x-outra-ocupação-baixa-temporada" class="level3">
 <h3 class="anchored" data-anchor-id="receita-x-outra-ocupação-baixa-temporada">Receita x Outra Ocupação (Baixa Temporada)</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>grafico.baixa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -226,6 +184,10 @@ colour.
 </div>
 </div>
 </section>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1"></h2>
+<p>Ao analisar a baixa temporada, observa-se que não há diferença de receita entre os trabalhadores de apenas uma ocupação, que são minoria nessa época, para os que possuem uma outra fonte de renda.</p>
 </section>
 <section id="correlação-entre-receita-e-horas-trabalhadas" class="level2">
 <h2 class="anchored" data-anchor-id="correlação-entre-receita-e-horas-trabalhadas"><strong>Correlação entre Receita e Horas Trabalhadas</strong></h2>
@@ -253,6 +215,10 @@ colour.
 
 </div>
 </div>
+</section>
+<section id="section-2" class="level2">
+<h2 class="anchored" data-anchor-id="section-2"></h2>
+<p>Ao analisar a baixa temporada, observa-se que não há diferença de receita entre os trabalhadores de apenas uma ocupação, que são minoria nessa época, para os que possuem uma outra fonte de renda.</p>
 </section>
 <section id="conclusão" class="level2">
 <h2 class="anchored" data-anchor-id="conclusão"><strong>Conclusão</strong></h2>
