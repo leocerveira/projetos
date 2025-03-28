@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Meu Portfólio de Análise de Dados",
     "section": "",
-    "text": "Bem-vindo ao meu portfólio!\nAqui você encontrará análises e visualizações feitas em R.\n\nBarraqueiros\nAnálise da COVID-19\nAnálise PIB\nCarta Macro\nPNAD - Renda\nDesmatamento e Violência em Municípios do Campo"
+    "text": "Aqui você encontrará análises e visualizações feitas em R.\n\nBarraqueiros\nAnálise da COVID-19\nAnálise PIB\nCarta Macro\nPNAD - Renda\nDesmatamento e Violência em Municípios do Campo"
   },
   {
     "objectID": "carta_macro.html",
@@ -39,7 +39,7 @@
     "href": "analise_pib.html#pacotes-usados",
     "title": "Análise do PIB Brasileiro e de Indicadores Socioeconômicos",
     "section": "Pacotes Usados",
-    "text": "Pacotes Usados\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.4     ✔ readr     2.1.5\n✔ forcats   1.0.0     ✔ stringr   1.5.1\n✔ ggplot2   3.5.0     ✔ tibble    3.2.1\n✔ lubridate 1.9.3     ✔ tidyr     1.3.1\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors\n\nlibrary(geobr)\n\nLoading required namespace: sf\n\nlibrary(cartogram)\nlibrary(sf)\n\nLinking to GEOS 3.11.2, GDAL 3.8.2, PROJ 9.3.1; sf_use_s2() is TRUE\n\nlibrary(cowplot)\n\n\nAttaching package: 'cowplot'\n\nThe following object is masked from 'package:lubridate':\n\n    stamp"
+    "text": "Pacotes Usados\n\nlibrary(tidyverse)\nlibrary(geobr)\nlibrary(cartogram)\nlibrary(sf)\nlibrary(cowplot)"
   },
   {
     "objectID": "analise_pib.html#gráficos-de-dispersão-com-índices-do-ideb",
@@ -53,14 +53,14 @@
     "href": "analise_pib.html#relação-de-impostos-e-as-regiões-do-brasil",
     "title": "Análise do PIB Brasileiro e de Indicadores Socioeconômicos",
     "section": "Relação de Impostos e as Regiões do Brasil",
-    "text": "Relação de Impostos e as Regiões do Brasil\nAnalisar a relação impostos/PIB ajuda a compreender o quanto cada UF contribui para a arrecadação levando em conta sua produção anual. A partir do gráfico, observa-se que tal relação mudou muito pouco nas últimas duas décadas, portanto, um aumento do PIB estadual causa um aumento similar da arrecadação por impostos.\n\n\n`geom_smooth()` using method = 'loess' and formula = 'y ~ x'"
+    "text": "Relação de Impostos e as Regiões do Brasil\nAnalisar a relação impostos/PIB ajuda a compreender o quanto cada UF contribui para a arrecadação levando em conta sua produção anual. A partir do gráfico, observa-se que tal relação mudou muito pouco nas últimas duas décadas, portanto, um aumento do PIB estadual causa um aumento similar da arrecadação por impostos. Nota-se, no entanto, que algumas regiões vem se distanciado dessa relação. Nos últimos anos, na região Norte, por exemplo, o aumento do PIB da regiãonnão foi acompanhado de um aumento dos impostos arrecadados."
   },
   {
     "objectID": "analise_pib.html#gráfico-de-anamorfose-relação-do-pib-com-o-ideb",
     "href": "analise_pib.html#gráfico-de-anamorfose-relação-do-pib-com-o-ideb",
     "title": "Análise do PIB Brasileiro e de Indicadores Socioeconômicos",
-    "section": "Gráfico de Anamorfose (Relação do PIB com o IDEB)",
-    "text": "Gráfico de Anamorfose (Relação do PIB com o IDEB)\nA anamorfose é um tipo de análise por cartograma que evidencia uma variável em função do tamanho do território escolhido. No caso, o PIB distorce a área de cada UF de acordo com sua contribuição nacional."
+    "section": "Gráfico de Anamorfose (Relação do PIB com o Ideb)",
+    "text": "Gráfico de Anamorfose (Relação do PIB com o Ideb)\nA anamorfose é um tipo de análise por cartograma que evidencia uma variável em função do tamanho do território escolhido. No caso, o PIB distorce a área de cada UF de acordo com sua contribuição nacional.\nNota-se que o PIB pouco se relaciona com níveis melhores de educação. Apesar disso, São Paulo se lidera em ambas as áreas e, pelo lado do Ideb, Ceará, Goiás e Paraná também se destacam, apesar da baixa representação no PIB do país."
   },
   {
     "objectID": "analise_pib.html#conjunto-de-gráficos-do-idh",
@@ -81,35 +81,35 @@
     "href": "analise_pib.html#conclusão",
     "title": "Análise do PIB Brasileiro e de Indicadores Socioeconômicos",
     "section": "Conclusão",
-    "text": "Conclusão\nO estudo do PIB brasileiro em seus diferentes setores produtivos, aliado a indicadores socioeconômicos como IDH, expectativa de vida, escolaridade e frequência escolar, permite visualizar disparidades e possíveis caminhos para o desenvolvimento regional. A análise de mapas e anamorfose traz insights sobre a concentração de riqueza em determinados estados, enquanto o cruzamento com dados como o IDEB explora a relação entre desenvolvimento econômico e educação."
+    "text": "Conclusão\nO estudo do PIB brasileiro em seus diferentes setores produtivos, aliado a indicadores socioeconômicos como IDH, expectativa de vida, escolaridade e frequência escolar, permite visualizar disparidades e possíveis caminhos para o desenvolvimento regional. A análise de gráficos e mapas traz insights sobre a concentração de riqueza em determinados estados ao cruzar dados como o Ideb, IDH e PIB, explorando a relação entre desenvolvimento econômico e qualidade de vida."
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "Estudante de economia, graduação PUC-Rio"
   },
   {
     "objectID": "barraqueiros.html",
     "href": "barraqueiros.html",
     "title": "Análise da Renda dos Barraqueiros",
     "section": "",
-    "text": "Este projeto analisa os determinantes da renda dos trabalhadores barraqueiros da praia de Copacabana. Foram considerados os horários de chegada e saída dos trabalhadores, além da existência de outra ocupação."
+    "text": "Este projeto buscou analisar os determinantes da renda dos trabalhadores barraqueiros da praia de Copacabana. Foram considerados os horários de chegada e saída dos trabalhadores, além da existência de outra ocupação."
   },
   {
     "objectID": "barraqueiros.html#introdução",
     "href": "barraqueiros.html#introdução",
     "title": "Análise da Renda dos Barraqueiros",
     "section": "",
-    "text": "Este projeto analisa os determinantes da renda dos trabalhadores barraqueiros da praia de Copacabana. Foram considerados os horários de chegada e saída dos trabalhadores, além da existência de outra ocupação."
+    "text": "Este projeto buscou analisar os determinantes da renda dos trabalhadores barraqueiros da praia de Copacabana. Foram considerados os horários de chegada e saída dos trabalhadores, além da existência de outra ocupação."
   },
   {
     "objectID": "barraqueiros.html#gráficos",
     "href": "barraqueiros.html#gráficos",
     "title": "Análise da Renda dos Barraqueiros",
     "section": "Gráficos",
-    "text": "Gráficos\n\nReceita x Horas Trabalhadas (Alta Temporada)\n\ngrafico.alta\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\nWarning: The following aesthetics were dropped during statistical transformation:\ncolour.\nℹ This can happen when ggplot fails to infer the correct grouping structure in\n  the data.\nℹ Did you forget to specify a `group` aesthetic or to convert a numerical\n  variable into a factor?\n\n\n\n\n\n\n\n\n\n\n\nReceita x Outra Ocupação (Baixa Temporada)\n\ngrafico.baixa"
+    "text": "Gráficos\n\nReceita x Horas Trabalhadas (Alta Temporada)"
   },
   {
     "objectID": "barraqueiros.html#correlação-entre-receita-e-horas-trabalhadas",
@@ -130,14 +130,14 @@
     "href": "covid_analise.html",
     "title": "Análise da COVID-19",
     "section": "",
-    "text": "Este projeto analisou dados da COVID-19 no Brasil e no estado de Minas Gerais, explorando a distribuição dos casos e óbitos ao longo do tempo, além de variáveis geoespaciais.\nResultados\n\n\n`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = \"cs\")'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = \"cs\")'"
+    "text": "Este projeto analisou dados da COVID-19 no Brasil e no estado de Minas Gerais, explorando a distribuição dos casos e óbitos ao longo do tempo e através de uma análise geoespacial."
   },
   {
     "objectID": "covid_analise.html#introdução",
     "href": "covid_analise.html#introdução",
     "title": "Análise da COVID-19",
     "section": "",
-    "text": "Este projeto analisou dados da COVID-19 no Brasil e no estado de Minas Gerais, explorando a distribuição dos casos e óbitos ao longo do tempo, além de variáveis geoespaciais.\nResultados\n\n\n`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = \"cs\")'\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n`geom_smooth()` using method = 'gam' and formula = 'y ~ s(x, bs = \"cs\")'"
+    "text": "Este projeto analisou dados da COVID-19 no Brasil e no estado de Minas Gerais, explorando a distribuição dos casos e óbitos ao longo do tempo e através de uma análise geoespacial."
   },
   {
     "objectID": "pnad.html",
@@ -151,6 +151,41 @@
     "href": "violencia_rural.html",
     "title": "Violência Rural",
     "section": "",
-    "text": "Pacotes utilizados:\n\nlapply(c(\n  \"datazoom.amazonia\", \n  \"readxl\", \n  \"tidyverse\", \n  \"sf\", \n  \"geobr\", \n  \"viridis\"), \n  function(x) {library(x, character.only = T)})\n\nBases de dados:\n\ndata &lt;- load_mapbiomas(\n  dataset = \"mapbiomas_deforestation_regeneration\",\n  raw_data = FALSE,\n  geo_level = \"municipality\",\n  language = \"pt\"\n)\n\ndata &lt;- data %&gt;%\nfilter(ano %in% (2012:2021),\n       classe_desmatamento %in% c(\"Supressao Veg. Primaria\", \"Supressao Veg. Secundaria\"))"
+    "text": "Pacotes utilizados:\n\nlapply(c(\n  \"datazoom.amazonia\", \n  \"readxl\", \n  \"tidyverse\", \n  \"sf\", \n  \"geobr\", \n  \"viridis\"), \n  function(x) {library(x, character.only = T)})"
+  },
+  {
+    "objectID": "barraqueiros.html#section",
+    "href": "barraqueiros.html#section",
+    "title": "Análise da Renda dos Barraqueiros",
+    "section": "",
+    "text": "A partir do gráfico, nota-se que há uma tendência que mais horas trabalhadas sejam acompanhadas de maior receita na alta temporada, independente se o trabalhador possui ou não outra ocupação. Comprova-se, também, que ter outra ocupação limita o número de horas trabalhadas, apesar de ainda elevado - acima de 10 horas para todos os trabalhadores. No entanto, não há aparente correlação entre possuir uma segunda ocupação e o rendimento do trabalho na praia.\n\nReceita x Outra Ocupação (Baixa Temporada)"
+  },
+  {
+    "objectID": "barraqueiros.html#section-1",
+    "href": "barraqueiros.html#section-1",
+    "title": "Análise da Renda dos Barraqueiros",
+    "section": "",
+    "text": "Ao analisar a baixa temporada, observa-se que não há diferença de receita entre os trabalhadores de apenas uma ocupação, que são minoria nessa época, para os que possuem uma outra fonte de renda."
+  },
+  {
+    "objectID": "barraqueiros.html#section-2",
+    "href": "barraqueiros.html#section-2",
+    "title": "Análise da Renda dos Barraqueiros",
+    "section": "",
+    "text": "Ao analisar a baixa temporada, observa-se que não há diferença de receita entre os trabalhadores de apenas uma ocupação, que são minoria nessa época, para os que possuem uma outra fonte de renda."
+  },
+  {
+    "objectID": "analise_pib.html#section",
+    "href": "analise_pib.html#section",
+    "title": "Análise do PIB Brasileiro e de Indicadores Socioeconômicos",
+    "section": "",
+    "text": "Os gráficos que relacionam PIB com o IDH e suas subáreas demonstram que, apesar das desigualdades que estão inseridas nas duas áreas, não observa-se forte correlação entre elas. O que é visível é que as regiões Norte e Nordeste não obtiveram destaque em nenhum dos comparativos.\nA relação entre o IDH e o Índice de Gini faz-se importante no contexto de grande desigualdade interegional do país. Mas, para além disso, é analisado se um índice que mede desigualdade também possui dispersão entre os estados brasileiros.\nO resultado encontrado é que há, sim, diferentes níveis de desigualdade no país, e estão fortemente correlacionados à qualidade de vida da unidade federativa: estados com pior IDH, presentes nas regiões Norte e Nordeste, mostram-se também os mais desiguais, enquanto a Região Sul encontra-se no outro extremo."
+  },
+  {
+    "objectID": "analise_pib.html#relação-entre-idh-e-índice-gini",
+    "href": "analise_pib.html#relação-entre-idh-e-índice-gini",
+    "title": "Análise do PIB Brasileiro e de Indicadores Socioeconômicos",
+    "section": "Relação entre IDH e Índice Gini",
+    "text": "Relação entre IDH e Índice Gini"
   }
 ]
