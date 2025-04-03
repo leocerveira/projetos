@@ -1,24 +1,80 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Meu Portfólio de Análise de Dados",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "Sobre",
     "section": "",
-    "text": "Aqui você encontrará análises e visualizações feitas em R.\n\nBarraqueiros\nAnálise da COVID-19\nAnálise PIB\nCarta Macro\nPNAD - Renda\nDesmatamento e Violência em Municípios do Campo"
+    "text": "Meu nome é Leonardo Cerveira, sou estudante de Economia e atualmente curso o sexto período. Ao longo da graduação, redescobri meu interesse pela área a partir de uma perspectiva mais aplicada e analítica. O que começou como uma curiosidade por macroeconomia e política evoluiu para uma verdadeira paixão por pesquisa, análise de dados e avaliação de políticas públicas.\nNeste espaço, reúno alguns dos projetos que desenvolvi durante a faculdade — tanto em disciplinas curriculares quanto em atividades extracurriculares e núcleos de capacitação — além de análises pessoais ainda em desenvolvimento.\nTodo o conteúdo aqui apresentado é de minha autoria e reflete meu processo contínuo de aprendizado e crescimento acadêmico.\nContato: leonardocerveira@outlook.com"
   },
   {
-    "objectID": "carta_macro.html",
-    "href": "carta_macro.html",
-    "title": "Análise do PIB Brasileiro: Investimento",
+    "objectID": "violencia_rural.html",
+    "href": "violencia_rural.html",
+    "title": "Violência Rural",
     "section": "",
-    "text": "Observa-se que as duas séries possuem movimentos relativamente sincronizados - a correlação ecnonctrada foi de 0,777, especialmente em períodos de expansão e contração econômica. Quando a Utilização da Capacidade Instalada (UCI) aumenta, indicando maior uso das plantas produtivas e uma economia aquecida, verifica-se que a FBCF também tende a crescer, refletindo um ambiente favorável para investimentos em capital fixo. Isso ocorre porque o aumento do uso da capacidade produtiva sinaliza a necessidade de novos investimentos para evitar gargalos e expandir a capacidade de produção.\nPor outro lado, nos períodos de queda significativa da UCI, como observado durante a crise econômica de 2015-2016 e a pandemia de 2020, a FBCF também apresentou reduções acentuadas, sugerindo que em cenários de ociosidade elevada, o incentivo para novos investimentos diminui drasticamente. Durante a pandemia, o gráfico destaca um mergulho acentuado na FBCF, muito mais profundo do que a queda na UCI, refletindo o impacto abrupto do choque econômico sobre a confiança dos investidores.\nAlém disso, nos períodos de recuperação econômica, as duas variáveis voltam a convergir em uma tendência de alta, embora a FBCF apresente certa defasagem em relação à Utilização da Capacidade Instalada. Isso pode ser explicado pelo tempo necessário para que as decisões de investimento sejam tomadas e implementadas, o que é característico dos movimentos cíclicos de investimento."
+    "text": "Pacotes utilizados:\n\nlapply(c(\n  \"datazoom.amazonia\", \n  \"readxl\", \n  \"tidyverse\", \n  \"sf\", \n  \"geobr\", \n  \"viridis\"), \n  function(x) {library(x, character.only = T)})"
   },
   {
-    "objectID": "carta_macro.html#implicações-econômicas",
-    "href": "carta_macro.html#implicações-econômicas",
-    "title": "Análise do PIB Brasileiro: Investimento",
-    "section": "Implicações Econômicas",
-    "text": "Implicações Econômicas\nA relação observada no gráfico é consistente com a teoria econômica: o aumento na utilização da capacidade produtiva geralmente antecede um aumento nos investimentos, uma vez que a demanda crescente pressiona a capacidade existente, levando as empresas a expandirem seus ativos fixos. Por outro lado, em momentos de ociosidade elevada, como durante recessões, a FBCF tende a se retrair, uma vez que as empresas reduzem investimentos devido à baixa demanda e incertezas econômicas.\n\n\n\n\n\n\n\n\n\nO gráfico apresentado mostra a relação entre o câmbio real, a Formação Bruta de Capital Fixo (FBCF), o PIB e a produção de bens de capital ao longo do tempo, destacando como as variações cambiais influenciam a atividade econômica e os investimentos no Brasil. A trajetória do câmbio real, representada pela linha azul, revela movimentos significativos de valorização e desvalorização ao longo do período, especialmente em momentos de crise, refletindo a volatilidade típica da economia brasileira. Esse comportamento tem impacto direto sobre os investimentos em capital fixo e a produção industrial, evidenciando a interdependência entre as variáveis.\nObserva-se que durante períodos de valorização cambial, como no início dos anos 2000 e meados da década, há um crescimento mais expressivo da FBCF e do PIB. Esse movimento sugere que a valorização do real criou um ambiente mais favorável aos investimentos, em grande parte devido à redução do custo de importação de bens de capital e insumos essenciais para a expansão da capacidade produtiva. A produção de bens de capital também apresentou um comportamento alinhado, respondendo positivamente à melhora nas condições econômicas e ao incentivo ao investimento. Enquanto a correlação entre FBCF e PIB é de 0,865, e entre FBCF e Bens de Capital é de 0,777, a correlação entre Bens de Capital e Câmbio é negativa, com valor de -0.647.\nNo entanto, a partir de 2014-2016, a desvalorização acentuada do câmbio, combinada com a recessão econômica, resultou em uma retração sincronizada da produção de bens de capital, da FBCF e do PIB. A desvalorização cambial, embora beneficie setores exportadores no curto prazo, encarece os insumos importados e os equipamentos necessários para os investimentos em capital fixo, desestimulando a produção e comprometendo a confiança dos investidores. Esse padrão foi novamente observado durante a pandemia de 2020, quando um choque econômico abrupto levou a uma forte desvalorização cambial, acompanhada de quedas expressivas na FBCF e na produção de bens de capital, destacando a sensibilidade do setor industrial às oscilações cambiais e ao ambiente de incerteza econômica.\nA produção de bens de capital, por sua natureza mais volátil, reage de forma mais pronunciada às mudanças nas condições econômicas e cambiais, apresentando quedas mais intensas em momentos de crise. Ao longo do gráfico, é possível perceber que, em contextos de recuperação econômica e de valorização do câmbio, a produção de bens de capital tende a se recuperar em sintonia com a FBCF, refletindo a retomada dos investimentos.\n\n\n\n\n\n\n\n\n\nO gráfico apresentado analisa como os juros Selic e o custo do crédito afetam a atividade econômica, representada pela Formação Bruta de Capital Fixo (FBCF), pelo PIB e pelas novas concessões de crédito. A parte superior do gráfico mostra a trajetória da Selic e do indicador de custo do crédito, enquanto a parte inferior ilustra a evolução das novas concessões de crédito, da FBCF e do PIB.\nA dinâmica entre as variáveis evidencia uma relação direta entre o nível das taxas de juros e a atividade econômica. Observa-se que períodos de elevação da Selic e do custo do crédito, como entre 2014 e 2016 e novamente entre 2021 e 2022, coincidem com um comportamento de desaceleração na FBCF e no PIB. Isso ocorre porque um custo mais alto para o crédito encarece os investimentos produtivos, inibindo o crescimento econômico. As empresas e famílias reduzem o volume de investimentos e consumo financiados, refletindo diretamente em uma menor demanda agregada e em uma desaceleração da atividade econômica.\nNo entanto, a evolução das novas concessões de crédito apresenta uma dinâmica diferente. Ao longo do período analisado, apesar de oscilações, as concessões de crédito apresentam uma tendência de crescimento sustentado, especialmente a partir de 2017. Esse comportamento sugere que, mesmo em um cenário de juros elevados, o sistema de crédito no Brasil continuou a expandir, possivelmente impulsionado pelo aumento de modalidades como o crédito consignado, garantido ou pelas operações de curto prazo. Isso pode refletir uma demanda resiliente por crédito, especialmente em momentos de recuperação econômica.\nA parte inferior do gráfico mostra que tanto o PIB quanto a FBCF apresentaram crescimento mais modesto e estável em comparação às novas concessões de crédito. A FBCF, especificamente, apresenta alta sensibilidade às variações no custo do crédito e na taxa Selic, refletindo sua natureza mais dependente de financiamentos de longo prazo. A queda nos juros, como vista entre 2016 e 2019, coincide com um período de leve recuperação dos investimentos, indicando o papel das condições monetárias mais favoráveis no estímulo à formação de capital fixo.\nEm resumo, o gráfico demonstra que os juros Selic e o custo do crédito desempenham um papel central na determinação da atividade econômica. O aumento dessas taxas desestimula o investimento produtivo, especialmente a FBCF, ao elevar o custo de captação e desincentivar o consumo e os investimentos financiados. Por outro lado, a expansão das concessões de crédito, mesmo em contextos de juros elevados, indica que fatores estruturais, como a diversificação do mercado de crédito, têm atenuado parcialmente os impactos negativos das taxas elevadas sobre a economia. O equilíbrio entre um custo do crédito sustentável e o estímulo à atividade econômica permanece um desafio essencial para a política monetária no Brasil.\n\n\n\n\n\n\n\n\n\nA projeção do PIB sugere uma estabilização após um crescimento acelerado, com um baixo crescimento esperado nos próximos trimestres. Isso ocorre devido à combinação de uma política fiscal restritiva, que visa controlar a inflação, e um cenário de alta inflação (IPCA), que pode levar a um desaquecimento da economia. Além disso, a desaceleração do mercado de trabalho também contribui para uma redução no consumo, impactando diretamente a demanda agregada e, por conseguinte, o PIB. Assim, o país deve enfrentar uma fase de crescimento mais baixo, embora estável, alinhada com a necessidade de ajustar as contas públicas e controlar as pressões inflacionárias.\nPara o FBCF (Investimento), a projeção aponta para um choque negativo no curto prazo, impulsionado principalmente pela câmbio apreciado e pela desaceleração do mercado de trabalho. O câmbio valorizado reduz a competitividade das exportações e aumenta as importações, afetando a capacidade de investimento das empresas no mercado interno. A desaceleração do mercado de trabalho, por sua vez, diminui o poder de compra das famílias, o que reduz a demanda interna e, consequentemente, a disposição das empresas para expandir seus investimentos. Esse cenário leva a uma queda acentuada do FBCF, especialmente no próximo ano.\nNo entanto, a projeção indica que, no médio prazo, o FBCF deve se estabilizar e crescer de forma mais alinhada ao PIB, à medida que o ambiente econômico se ajusta e a confiança nas perspectivas econômicas aumenta. A recuperação gradual no FBCF está associada a uma possível redução das taxas de juros, políticas de estímulo e o retorno de um mercado de trabalho mais equilibrado, o que pode criar as condições para um novo ciclo de investimentos. Portanto, enquanto o curto prazo apresenta desafios significativos, o Brasil pode experimentar uma recuperação gradual no médio prazo, à medida que os ajustes necessários forem feitos e a confiança econômica for restaurada."
+    "objectID": "covid_analise.html",
+    "href": "covid_analise.html",
+    "title": "Análise da COVID-19",
+    "section": "",
+    "text": "Este projeto analisou dados da COVID-19 no Brasil e no estado de Minas Gerais, explorando a distribuição dos casos e óbitos ao longo do tempo e através de uma análise geoespacial."
+  },
+  {
+    "objectID": "covid_analise.html#introdução",
+    "href": "covid_analise.html#introdução",
+    "title": "Análise da COVID-19",
+    "section": "",
+    "text": "Este projeto analisou dados da COVID-19 no Brasil e no estado de Minas Gerais, explorando a distribuição dos casos e óbitos ao longo do tempo e através de uma análise geoespacial."
+  },
+  {
+    "objectID": "barraqueiros.html",
+    "href": "barraqueiros.html",
+    "title": "Análise da Renda dos Barraqueiros",
+    "section": "",
+    "text": "Este projeto buscou analisar os determinantes da renda dos trabalhadores barraqueiros da praia de Copacabana. Foram considerados os horários de chegada e saída dos trabalhadores, além da existência de outra ocupação."
+  },
+  {
+    "objectID": "barraqueiros.html#introdução",
+    "href": "barraqueiros.html#introdução",
+    "title": "Análise da Renda dos Barraqueiros",
+    "section": "",
+    "text": "Este projeto buscou analisar os determinantes da renda dos trabalhadores barraqueiros da praia de Copacabana. Foram considerados os horários de chegada e saída dos trabalhadores, além da existência de outra ocupação."
+  },
+  {
+    "objectID": "barraqueiros.html#section",
+    "href": "barraqueiros.html#section",
+    "title": "Análise da Renda dos Barraqueiros",
+    "section": "",
+    "text": "A partir do gráfico, nota-se que há uma tendência que mais horas trabalhadas sejam acompanhadas de maior receita na alta temporada, independente se o trabalhador possui ou não outra ocupação. Comprova-se, também, que ter outra ocupação limita o número de horas trabalhadas, apesar de ainda elevado - acima de 10 horas para todos os trabalhadores. No entanto, não há aparente correlação entre possuir uma segunda ocupação e o rendimento do trabalho na praia.\n\nReceita x Outra Ocupação (Baixa Temporada)"
+  },
+  {
+    "objectID": "barraqueiros.html#section-1",
+    "href": "barraqueiros.html#section-1",
+    "title": "Análise da Renda dos Barraqueiros",
+    "section": "",
+    "text": "Ao analisar a baixa temporada, observa-se que não há diferença de receita entre os trabalhadores de apenas uma ocupação, que são minoria nessa época, para os que possuem uma outra fonte de renda."
+  },
+  {
+    "objectID": "barraqueiros.html#correlação-entre-receita-e-horas-trabalhadas",
+    "href": "barraqueiros.html#correlação-entre-receita-e-horas-trabalhadas",
+    "title": "Análise da Renda dos Barraqueiros",
+    "section": "Correlação entre Receita e Horas Trabalhadas",
+    "text": "Correlação entre Receita e Horas Trabalhadas\n\n\n\n\n\nTemporada\nCorrelação\n\n\n\n\nAlta\n0.424\n\n\nBaixa\n-0.110"
+  },
+  {
+    "objectID": "barraqueiros.html#section-2",
+    "href": "barraqueiros.html#section-2",
+    "title": "Análise da Renda dos Barraqueiros",
+    "section": "",
+    "text": "Ao analisar a baixa temporada, observa-se que não há diferença de receita entre os trabalhadores de apenas uma ocupação, que são minoria nessa época, para os que possuem uma outra fonte de renda."
+  },
+  {
+    "objectID": "barraqueiros.html#conclusão",
+    "href": "barraqueiros.html#conclusão",
+    "title": "Análise da Renda dos Barraqueiros",
+    "section": "Conclusão",
+    "text": "Conclusão\nA análise revelou que a renda dos barraqueiros está correlacionada com o número de horas trabalhadas e a existência de uma segunda ocupação. A relação entre essas variáveis varia conforme a temporada, afetando os rendimentos desses trabalhadores."
   },
   {
     "objectID": "analise_pib.html",
@@ -42,13 +98,6 @@
     "text": "Pacotes Usados\n\nlibrary(tidyverse)\nlibrary(geobr)\nlibrary(cartogram)\nlibrary(sf)\nlibrary(cowplot)"
   },
   {
-    "objectID": "analise_pib.html#gráficos-de-dispersão-com-índices-do-ideb",
-    "href": "analise_pib.html#gráficos-de-dispersão-com-índices-do-ideb",
-    "title": "Análise do PIB Brasileiro e de Indicadores Socioeconômicos",
-    "section": "Gráficos de Dispersão com Índices do IDEB",
-    "text": "Gráficos de Dispersão com Índices do IDEB"
-  },
-  {
     "objectID": "analise_pib.html#relação-de-impostos-e-as-regiões-do-brasil",
     "href": "analise_pib.html#relação-de-impostos-e-as-regiões-do-brasil",
     "title": "Análise do PIB Brasileiro e de Indicadores Socioeconômicos",
@@ -70,109 +119,11 @@
     "text": "Conjunto de Gráficos do IDH"
   },
   {
-    "objectID": "analise_pib.html#relação-entre-pib-e-índice-gini",
-    "href": "analise_pib.html#relação-entre-pib-e-índice-gini",
+    "objectID": "analise_pib.html#relação-entre-idh-e-índice-gini",
+    "href": "analise_pib.html#relação-entre-idh-e-índice-gini",
     "title": "Análise do PIB Brasileiro e de Indicadores Socioeconômicos",
-    "section": "Relação entre PIB e Índice Gini",
-    "text": "Relação entre PIB e Índice Gini"
-  },
-  {
-    "objectID": "analise_pib.html#conclusão",
-    "href": "analise_pib.html#conclusão",
-    "title": "Análise do PIB Brasileiro e de Indicadores Socioeconômicos",
-    "section": "Conclusão",
-    "text": "Conclusão\nO estudo do PIB brasileiro em seus diferentes setores produtivos, aliado a indicadores socioeconômicos como IDH, expectativa de vida, escolaridade e frequência escolar, permite visualizar disparidades e possíveis caminhos para o desenvolvimento regional. A análise de gráficos e mapas traz insights sobre a concentração de riqueza em determinados estados ao cruzar dados como o Ideb, IDH e PIB, explorando a relação entre desenvolvimento econômico e qualidade de vida."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Estudante de economia, graduação PUC-Rio"
-  },
-  {
-    "objectID": "barraqueiros.html",
-    "href": "barraqueiros.html",
-    "title": "Análise da Renda dos Barraqueiros",
-    "section": "",
-    "text": "Este projeto buscou analisar os determinantes da renda dos trabalhadores barraqueiros da praia de Copacabana. Foram considerados os horários de chegada e saída dos trabalhadores, além da existência de outra ocupação."
-  },
-  {
-    "objectID": "barraqueiros.html#introdução",
-    "href": "barraqueiros.html#introdução",
-    "title": "Análise da Renda dos Barraqueiros",
-    "section": "",
-    "text": "Este projeto buscou analisar os determinantes da renda dos trabalhadores barraqueiros da praia de Copacabana. Foram considerados os horários de chegada e saída dos trabalhadores, além da existência de outra ocupação."
-  },
-  {
-    "objectID": "barraqueiros.html#gráficos",
-    "href": "barraqueiros.html#gráficos",
-    "title": "Análise da Renda dos Barraqueiros",
-    "section": "Gráficos",
-    "text": "Gráficos\n\nReceita x Horas Trabalhadas (Alta Temporada)"
-  },
-  {
-    "objectID": "barraqueiros.html#correlação-entre-receita-e-horas-trabalhadas",
-    "href": "barraqueiros.html#correlação-entre-receita-e-horas-trabalhadas",
-    "title": "Análise da Renda dos Barraqueiros",
-    "section": "Correlação entre Receita e Horas Trabalhadas",
-    "text": "Correlação entre Receita e Horas Trabalhadas\n\n\n\n\n\nTemporada\nCorrelação\n\n\n\n\nAlta\n0.424\n\n\nBaixa\n-0.110"
-  },
-  {
-    "objectID": "barraqueiros.html#conclusão",
-    "href": "barraqueiros.html#conclusão",
-    "title": "Análise da Renda dos Barraqueiros",
-    "section": "Conclusão",
-    "text": "Conclusão\nA análise revelou que a renda dos barraqueiros está correlacionada com o número de horas trabalhadas e a existência de uma segunda ocupação. A relação entre essas variáveis varia conforme a temporada, afetando os rendimentos desses trabalhadores."
-  },
-  {
-    "objectID": "covid_analise.html",
-    "href": "covid_analise.html",
-    "title": "Análise da COVID-19",
-    "section": "",
-    "text": "Este projeto analisou dados da COVID-19 no Brasil e no estado de Minas Gerais, explorando a distribuição dos casos e óbitos ao longo do tempo e através de uma análise geoespacial."
-  },
-  {
-    "objectID": "covid_analise.html#introdução",
-    "href": "covid_analise.html#introdução",
-    "title": "Análise da COVID-19",
-    "section": "",
-    "text": "Este projeto analisou dados da COVID-19 no Brasil e no estado de Minas Gerais, explorando a distribuição dos casos e óbitos ao longo do tempo e através de uma análise geoespacial."
-  },
-  {
-    "objectID": "pnad.html",
-    "href": "pnad.html",
-    "title": "PNAD - Renda",
-    "section": "",
-    "text": "Pacotes utilizados:\n\nlapply(c(\n  \"survey\", \n  \"tidyverse\", \n  \"PNADcIBGE\", \n  \"future\", \n  \"future.apply\", \n  \"progressr\", \n  \"data.table\"),\n  function(x) {library(x, character.only = TRUE)})\n\nFunções criadas:\n\ncarregar_dados &lt;- function(ano) {\n  assign(paste0(\"ano\", ano), get_pnadc(year = ano, quarter = 1, vars = c(\"UF\", \"V1028\", \"V2007\", \"V2010\", \"VD4002\", \"VD4004A\", \"VD4019\")))\n}\n\ncalcula_media &lt;- function(design) {\n  design &lt;- update(design, Renda = VD4019 * Habitual)\n  \n  renda_ano &lt;- svyby(\n    formula = ~Renda,\n    by = ~interaction(V2007, V2010),  \n    design = design,\n    FUN = svymean,\n    na.rm = TRUE\n  )\n  \n  renda_ano &lt;- renda_ano %&gt;%\n    rename(Categoria = 'interaction(V2007, V2010)') %&gt;%\n    mutate(Categoria = as.character(Categoria))\n  \n  renda_media &lt;-  svymean(x = ~Renda, design = design, na.rm = TRUE)\n\n  renda_geral &lt;- c(\"Geral\", coef(renda_media), SE(renda_media))\n  \n  renda_ano &lt;- rbind(renda_ano, renda_geral)\n  rownames(renda_ano) &lt;-  NULL\n  gc()\n  return(renda_ano)\n}\n\ncalcula_quartil &lt;- function(dados) {\n  dado &lt;- dados\n  dado &lt;- subset(dado, !is.na(VD4019) & !is.na(V2007) & !is.na(V2010))\n  dado &lt;- update(dado, Renda = VD4019 * Habitual)\n  dado &lt;- update(dado, Categoria = interaction(V2007, V2010))\n  \n  quartis &lt;- svyby(\n    ~Renda,                      \n    ~Categoria,                      \n    dado,                       \n    FUN = svyquantile,            \n    quantiles = c(0.25, 0.5, 0.75)\n  )\n  \n  dado_df &lt;- as.data.frame(dado$variables)\n  dado_df &lt;- left_join(dado_df, (quartis), by = \"Categoria\")\n  \n  quartil_geral &lt;- svyquantile(\n    x = ~Renda, \n    design = dado, \n    quantiles = c(0.25, 0.5, 0.75), \n    ci = FALSE\n  )\n  \n    quartil_geral &lt;- as.data.frame(quartil_geral[[\"Renda\"]])\n  \n  renda_media &lt;- svymean(~Renda, dado) \n  as.numeric(renda_media[\"Renda\"])\n  \n  dado_df &lt;- dado_df %&gt;%\n    select(Categoria, Renda, Renda.0.25, Renda.0.5, Renda.0.75) %&gt;%\n    mutate(Categoria = as.character(Categoria))\n  \n  media_geral &lt;- data.frame(\n    Categoria = \"Geral\",\n    Renda = as.numeric(renda_media[\"Renda\"]),\n    Renda.0.25 = as.numeric(quartil_geral[1]),\n    Renda.0.5 = as.numeric(quartil_geral[2]),\n    Renda.0.75 = as.numeric(quartil_geral[3]),\n    Quartil = case_when(\n      as.numeric(renda_media[\"Renda\"]) &lt;= as.numeric(quartil_geral[1]) ~ \"q1\",\n      as.numeric(renda_media[\"Renda\"]) &lt;= as.numeric(quartil_geral[2]) ~ \"q2\",\n      as.numeric(renda_media[\"Renda\"]) &lt;= as.numeric(quartil_geral[3]) ~ \"q3\",\n      TRUE ~ \"q4\"\n    )\n  )\n  \n  dado_df$Categoria &lt;- factor(dado_df$Categoria)\n  dado_df &lt;- dado_df %&gt;%\n    mutate(\n      Quartil = case_when(\n        Renda &lt;= Renda.0.25 ~ \"q1\",            \n        Renda &lt;= Renda.0.5 ~ \"q2\",            \n        Renda &lt;= Renda.0.75 ~ \"q3\",            \n        TRUE ~ \"q4\")\n    )\n  dado_df &lt;- full_join(dado_df, media_geral)\n  \n  dado_df$Renda &lt;- as.numeric(dado_df$Renda)\n  \n  resultado &lt;- dado_df %&gt;%\n    group_by(Categoria, Quartil) %&gt;% \n    summarize(Media_Renda = mean(Renda)) %&gt;%\n    mutate(Quartil_Geral = case_when(\n      Media_Renda &lt;= as.numeric(quartil_geral[1]) ~ \"Q1\",            \n      Media_Renda &lt;= as.numeric(quartil_geral[2]) ~ \"Q2\",            \n      Media_Renda &lt;= as.numeric(quartil_geral[3]) ~ \"Q3\",            \n      TRUE ~ \"Q4\"),\n    )\n  return(resultado)\n}\n\nGráficos"
-  },
-  {
-    "objectID": "violencia_rural.html",
-    "href": "violencia_rural.html",
-    "title": "Violência Rural",
-    "section": "",
-    "text": "Pacotes utilizados:\n\nlapply(c(\n  \"datazoom.amazonia\", \n  \"readxl\", \n  \"tidyverse\", \n  \"sf\", \n  \"geobr\", \n  \"viridis\"), \n  function(x) {library(x, character.only = T)})"
-  },
-  {
-    "objectID": "barraqueiros.html#section",
-    "href": "barraqueiros.html#section",
-    "title": "Análise da Renda dos Barraqueiros",
-    "section": "",
-    "text": "A partir do gráfico, nota-se que há uma tendência que mais horas trabalhadas sejam acompanhadas de maior receita na alta temporada, independente se o trabalhador possui ou não outra ocupação. Comprova-se, também, que ter outra ocupação limita o número de horas trabalhadas, apesar de ainda elevado - acima de 10 horas para todos os trabalhadores. No entanto, não há aparente correlação entre possuir uma segunda ocupação e o rendimento do trabalho na praia.\n\nReceita x Outra Ocupação (Baixa Temporada)"
-  },
-  {
-    "objectID": "barraqueiros.html#section-1",
-    "href": "barraqueiros.html#section-1",
-    "title": "Análise da Renda dos Barraqueiros",
-    "section": "",
-    "text": "Ao analisar a baixa temporada, observa-se que não há diferença de receita entre os trabalhadores de apenas uma ocupação, que são minoria nessa época, para os que possuem uma outra fonte de renda."
-  },
-  {
-    "objectID": "barraqueiros.html#section-2",
-    "href": "barraqueiros.html#section-2",
-    "title": "Análise da Renda dos Barraqueiros",
-    "section": "",
-    "text": "Ao analisar a baixa temporada, observa-se que não há diferença de receita entre os trabalhadores de apenas uma ocupação, que são minoria nessa época, para os que possuem uma outra fonte de renda."
+    "section": "Relação entre IDH e Índice Gini",
+    "text": "Relação entre IDH e Índice Gini"
   },
   {
     "objectID": "analise_pib.html#section",
@@ -182,10 +133,45 @@
     "text": "Os gráficos que relacionam PIB com o IDH e suas subáreas demonstram que, apesar das desigualdades que estão inseridas nas duas áreas, não observa-se forte correlação entre elas. O que é visível é que as regiões Norte e Nordeste não obtiveram destaque em nenhum dos comparativos.\nA relação entre o IDH e o Índice de Gini faz-se importante no contexto de grande desigualdade interegional do país. Mas, para além disso, é analisado se um índice que mede desigualdade também possui dispersão entre os estados brasileiros.\nO resultado encontrado é que há, sim, diferentes níveis de desigualdade no país, e estão fortemente correlacionados à qualidade de vida da unidade federativa: estados com pior IDH, presentes nas regiões Norte e Nordeste, mostram-se também os mais desiguais, enquanto a Região Sul encontra-se no outro extremo."
   },
   {
-    "objectID": "analise_pib.html#relação-entre-idh-e-índice-gini",
-    "href": "analise_pib.html#relação-entre-idh-e-índice-gini",
+    "objectID": "analise_pib.html#conclusão",
+    "href": "analise_pib.html#conclusão",
     "title": "Análise do PIB Brasileiro e de Indicadores Socioeconômicos",
-    "section": "Relação entre IDH e Índice Gini",
-    "text": "Relação entre IDH e Índice Gini"
+    "section": "Conclusão",
+    "text": "Conclusão\nO estudo do PIB brasileiro em seus diferentes setores produtivos, aliado a indicadores socioeconômicos como IDH, expectativa de vida, escolaridade e frequência escolar, permite visualizar disparidades e possíveis caminhos para o desenvolvimento regional. A análise de gráficos e mapas traz insights sobre a concentração de riqueza em determinados estados ao cruzar dados como o Ideb, IDH e PIB, explorando a relação entre desenvolvimento econômico e qualidade de vida."
+  },
+  {
+    "objectID": "carta_macro.html",
+    "href": "carta_macro.html",
+    "title": "Análise do PIB Brasileiro: Investimento",
+    "section": "",
+    "text": "Observa-se que as duas séries possuem movimentos relativamente sincronizados - a correlação ecnonctrada foi de 0,777, especialmente em períodos de expansão e contração econômica. Quando a Utilização da Capacidade Instalada (UCI) aumenta, indicando maior uso das plantas produtivas e uma economia aquecida, verifica-se que a FBCF também tende a crescer, refletindo um ambiente favorável para investimentos em capital fixo. Isso ocorre porque o aumento do uso da capacidade produtiva sinaliza a necessidade de novos investimentos para evitar gargalos e expandir a capacidade de produção.\nPor outro lado, nos períodos de queda significativa da UCI, como observado durante a crise econômica de 2015-2016 e a pandemia de 2020, a FBCF também apresentou reduções acentuadas, sugerindo que em cenários de ociosidade elevada, o incentivo para novos investimentos diminui drasticamente. Durante a pandemia, o gráfico destaca um mergulho acentuado na FBCF, muito mais profundo do que a queda na UCI, refletindo o impacto abrupto do choque econômico sobre a confiança dos investidores.\nAlém disso, nos períodos de recuperação econômica, as duas variáveis voltam a convergir em uma tendência de alta, embora a FBCF apresente certa defasagem em relação à Utilização da Capacidade Instalada. Isso pode ser explicado pelo tempo necessário para que as decisões de investimento sejam tomadas e implementadas, o que é característico dos movimentos cíclicos de investimento."
+  },
+  {
+    "objectID": "carta_macro.html#implicações-econômicas",
+    "href": "carta_macro.html#implicações-econômicas",
+    "title": "Análise do PIB Brasileiro: Investimento",
+    "section": "Implicações Econômicas",
+    "text": "Implicações Econômicas\nA relação observada no gráfico é consistente com a teoria econômica: o aumento na utilização da capacidade produtiva geralmente antecede um aumento nos investimentos, uma vez que a demanda crescente pressiona a capacidade existente, levando as empresas a expandirem seus ativos fixos. Por outro lado, em momentos de ociosidade elevada, como durante recessões, a FBCF tende a se retrair, uma vez que as empresas reduzem investimentos devido à baixa demanda e incertezas econômicas.\n\n\n\n\n\n\n\n\n\nO gráfico apresentado mostra a relação entre o câmbio real, a Formação Bruta de Capital Fixo (FBCF), o PIB e a produção de bens de capital ao longo do tempo, destacando como as variações cambiais influenciam a atividade econômica e os investimentos no Brasil. A trajetória do câmbio real, representada pela linha azul, revela movimentos significativos de valorização e desvalorização ao longo do período, especialmente em momentos de crise, refletindo a volatilidade típica da economia brasileira. Esse comportamento tem impacto direto sobre os investimentos em capital fixo e a produção industrial, evidenciando a interdependência entre as variáveis.\nObserva-se que durante períodos de valorização cambial, como no início dos anos 2000 e meados da década, há um crescimento mais expressivo da FBCF e do PIB. Esse movimento sugere que a valorização do real criou um ambiente mais favorável aos investimentos, em grande parte devido à redução do custo de importação de bens de capital e insumos essenciais para a expansão da capacidade produtiva. A produção de bens de capital também apresentou um comportamento alinhado, respondendo positivamente à melhora nas condições econômicas e ao incentivo ao investimento. Enquanto a correlação entre FBCF e PIB é de 0,865, e entre FBCF e Bens de Capital é de 0,777, a correlação entre Bens de Capital e Câmbio é negativa, com valor de -0.647.\nNo entanto, a partir de 2014-2016, a desvalorização acentuada do câmbio, combinada com a recessão econômica, resultou em uma retração sincronizada da produção de bens de capital, da FBCF e do PIB. A desvalorização cambial, embora beneficie setores exportadores no curto prazo, encarece os insumos importados e os equipamentos necessários para os investimentos em capital fixo, desestimulando a produção e comprometendo a confiança dos investidores. Esse padrão foi novamente observado durante a pandemia de 2020, quando um choque econômico abrupto levou a uma forte desvalorização cambial, acompanhada de quedas expressivas na FBCF e na produção de bens de capital, destacando a sensibilidade do setor industrial às oscilações cambiais e ao ambiente de incerteza econômica.\nA produção de bens de capital, por sua natureza mais volátil, reage de forma mais pronunciada às mudanças nas condições econômicas e cambiais, apresentando quedas mais intensas em momentos de crise. Ao longo do gráfico, é possível perceber que, em contextos de recuperação econômica e de valorização do câmbio, a produção de bens de capital tende a se recuperar em sintonia com a FBCF, refletindo a retomada dos investimentos.\n\n\n\n\n\n\n\n\n\nO gráfico apresentado analisa como os juros Selic e o custo do crédito afetam a atividade econômica, representada pela Formação Bruta de Capital Fixo (FBCF), pelo PIB e pelas novas concessões de crédito. A parte superior do gráfico mostra a trajetória da Selic e do indicador de custo do crédito, enquanto a parte inferior ilustra a evolução das novas concessões de crédito, da FBCF e do PIB.\nA dinâmica entre as variáveis evidencia uma relação direta entre o nível das taxas de juros e a atividade econômica. Observa-se que períodos de elevação da Selic e do custo do crédito, como entre 2014 e 2016 e novamente entre 2021 e 2022, coincidem com um comportamento de desaceleração na FBCF e no PIB. Isso ocorre porque um custo mais alto para o crédito encarece os investimentos produtivos, inibindo o crescimento econômico. As empresas e famílias reduzem o volume de investimentos e consumo financiados, refletindo diretamente em uma menor demanda agregada e em uma desaceleração da atividade econômica.\nNo entanto, a evolução das novas concessões de crédito apresenta uma dinâmica diferente. Ao longo do período analisado, apesar de oscilações, as concessões de crédito apresentam uma tendência de crescimento sustentado, especialmente a partir de 2017. Esse comportamento sugere que, mesmo em um cenário de juros elevados, o sistema de crédito no Brasil continuou a expandir, possivelmente impulsionado pelo aumento de modalidades como o crédito consignado, garantido ou pelas operações de curto prazo. Isso pode refletir uma demanda resiliente por crédito, especialmente em momentos de recuperação econômica.\nA parte inferior do gráfico mostra que tanto o PIB quanto a FBCF apresentaram crescimento mais modesto e estável em comparação às novas concessões de crédito. A FBCF, especificamente, apresenta alta sensibilidade às variações no custo do crédito e na taxa Selic, refletindo sua natureza mais dependente de financiamentos de longo prazo. A queda nos juros, como vista entre 2016 e 2019, coincide com um período de leve recuperação dos investimentos, indicando o papel das condições monetárias mais favoráveis no estímulo à formação de capital fixo.\nEm resumo, o gráfico demonstra que os juros Selic e o custo do crédito desempenham um papel central na determinação da atividade econômica. O aumento dessas taxas desestimula o investimento produtivo, especialmente a FBCF, ao elevar o custo de captação e desincentivar o consumo e os investimentos financiados. Por outro lado, a expansão das concessões de crédito, mesmo em contextos de juros elevados, indica que fatores estruturais, como a diversificação do mercado de crédito, têm atenuado parcialmente os impactos negativos das taxas elevadas sobre a economia. O equilíbrio entre um custo do crédito sustentável e o estímulo à atividade econômica permanece um desafio essencial para a política monetária no Brasil.\n\n\n\n\n\n\n\n\n\nA projeção do PIB sugere uma estabilização após um crescimento acelerado, com um baixo crescimento esperado nos próximos trimestres. Isso ocorre devido à combinação de uma política fiscal restritiva, que visa controlar a inflação, e um cenário de alta inflação (IPCA), que pode levar a um desaquecimento da economia. Além disso, a desaceleração do mercado de trabalho também contribui para uma redução no consumo, impactando diretamente a demanda agregada e, por conseguinte, o PIB. Assim, o país deve enfrentar uma fase de crescimento mais baixo, embora estável, alinhada com a necessidade de ajustar as contas públicas e controlar as pressões inflacionárias.\nPara o FBCF (Investimento), a projeção aponta para um choque negativo no curto prazo, impulsionado principalmente pela câmbio apreciado e pela desaceleração do mercado de trabalho. O câmbio valorizado reduz a competitividade das exportações e aumenta as importações, afetando a capacidade de investimento das empresas no mercado interno. A desaceleração do mercado de trabalho, por sua vez, diminui o poder de compra das famílias, o que reduz a demanda interna e, consequentemente, a disposição das empresas para expandir seus investimentos. Esse cenário leva a uma queda acentuada do FBCF, especialmente no próximo ano.\nNo entanto, a projeção indica que, no médio prazo, o FBCF deve se estabilizar e crescer de forma mais alinhada ao PIB, à medida que o ambiente econômico se ajusta e a confiança nas perspectivas econômicas aumenta. A recuperação gradual no FBCF está associada a uma possível redução das taxas de juros, políticas de estímulo e o retorno de um mercado de trabalho mais equilibrado, o que pode criar as condições para um novo ciclo de investimentos. Portanto, enquanto o curto prazo apresenta desafios significativos, o Brasil pode experimentar uma recuperação gradual no médio prazo, à medida que os ajustes necessários forem feitos e a confiança econômica for restaurada."
+  },
+  {
+    "objectID": "pnad.html",
+    "href": "pnad.html",
+    "title": "PNAD - Renda",
+    "section": "",
+    "text": "Pacotes utilizados:\n\nlapply(c(\n  \"survey\", \n  \"tidyverse\", \n  \"PNADcIBGE\", \n  \"future\", \n  \"future.apply\", \n  \"progressr\", \n  \"data.table\"),\n  function(x) {library(x, character.only = TRUE)})\n\nFunções criadas:\n\ncarregar_dados &lt;- function(ano) {\n  assign(paste0(\"ano\", ano), get_pnadc(year = ano, quarter = 1, vars = c(\"UF\", \"V1028\", \"V2007\", \"V2010\", \"VD4002\", \"VD4004A\", \"VD4019\")))\n}\n\ncalcula_media &lt;- function(design) {\n  design &lt;- update(design, Renda = VD4019 * Habitual)\n  \n  renda_ano &lt;- svyby(\n    formula = ~Renda,\n    by = ~interaction(V2007, V2010),  \n    design = design,\n    FUN = svymean,\n    na.rm = TRUE\n  )\n  \n  renda_ano &lt;- renda_ano %&gt;%\n    rename(Categoria = 'interaction(V2007, V2010)') %&gt;%\n    mutate(Categoria = as.character(Categoria))\n  \n  renda_media &lt;-  svymean(x = ~Renda, design = design, na.rm = TRUE)\n\n  renda_geral &lt;- c(\"Geral\", coef(renda_media), SE(renda_media))\n  \n  renda_ano &lt;- rbind(renda_ano, renda_geral)\n  rownames(renda_ano) &lt;-  NULL\n  gc()\n  return(renda_ano)\n}\n\ncalcula_quartil &lt;- function(dados) {\n  dado &lt;- dados\n  dado &lt;- subset(dado, !is.na(VD4019) & !is.na(V2007) & !is.na(V2010))\n  dado &lt;- update(dado, Renda = VD4019 * Habitual)\n  dado &lt;- update(dado, Categoria = interaction(V2007, V2010))\n  \n  quartis &lt;- svyby(\n    ~Renda,                      \n    ~Categoria,                      \n    dado,                       \n    FUN = svyquantile,            \n    quantiles = c(0.25, 0.5, 0.75)\n  )\n  \n  dado_df &lt;- as.data.frame(dado$variables)\n  dado_df &lt;- left_join(dado_df, (quartis), by = \"Categoria\")\n  \n  quartil_geral &lt;- svyquantile(\n    x = ~Renda, \n    design = dado, \n    quantiles = c(0.25, 0.5, 0.75), \n    ci = FALSE\n  )\n  \n    quartil_geral &lt;- as.data.frame(quartil_geral[[\"Renda\"]])\n  \n  renda_media &lt;- svymean(~Renda, dado) \n  as.numeric(renda_media[\"Renda\"])\n  \n  dado_df &lt;- dado_df %&gt;%\n    select(Categoria, Renda, Renda.0.25, Renda.0.5, Renda.0.75) %&gt;%\n    mutate(Categoria = as.character(Categoria))\n  \n  media_geral &lt;- data.frame(\n    Categoria = \"Geral\",\n    Renda = as.numeric(renda_media[\"Renda\"]),\n    Renda.0.25 = as.numeric(quartil_geral[1]),\n    Renda.0.5 = as.numeric(quartil_geral[2]),\n    Renda.0.75 = as.numeric(quartil_geral[3]),\n    Quartil = case_when(\n      as.numeric(renda_media[\"Renda\"]) &lt;= as.numeric(quartil_geral[1]) ~ \"q1\",\n      as.numeric(renda_media[\"Renda\"]) &lt;= as.numeric(quartil_geral[2]) ~ \"q2\",\n      as.numeric(renda_media[\"Renda\"]) &lt;= as.numeric(quartil_geral[3]) ~ \"q3\",\n      TRUE ~ \"q4\"\n    )\n  )\n  \n  dado_df$Categoria &lt;- factor(dado_df$Categoria)\n  dado_df &lt;- dado_df %&gt;%\n    mutate(\n      Quartil = case_when(\n        Renda &lt;= Renda.0.25 ~ \"q1\",            \n        Renda &lt;= Renda.0.5 ~ \"q2\",            \n        Renda &lt;= Renda.0.75 ~ \"q3\",            \n        TRUE ~ \"q4\")\n    )\n  dado_df &lt;- full_join(dado_df, media_geral)\n  \n  dado_df$Renda &lt;- as.numeric(dado_df$Renda)\n  \n  resultado &lt;- dado_df %&gt;%\n    group_by(Categoria, Quartil) %&gt;% \n    summarize(Media_Renda = mean(Renda)) %&gt;%\n    mutate(Quartil_Geral = case_when(\n      Media_Renda &lt;= as.numeric(quartil_geral[1]) ~ \"Q1\",            \n      Media_Renda &lt;= as.numeric(quartil_geral[2]) ~ \"Q2\",            \n      Media_Renda &lt;= as.numeric(quartil_geral[3]) ~ \"Q3\",            \n      TRUE ~ \"Q4\"),\n    )\n  return(resultado)\n}\n\nGráficos"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Meu Portfólio de Análise de Dados",
+    "section": "",
+    "text": "Aqui você encontrará análises e visualizações feitas em R.\n\nBarraqueiros\nAnálise da COVID-19\nAnálise PIB\nCarta Macro\nPNAD - Renda\nDesmatamento e Violência em Municípios do Campo"
+  },
+  {
+    "objectID": "sobre.html",
+    "href": "sobre.html",
+    "title": "Sobre",
+    "section": "",
+    "text": "Meu nome é Leonardo Cerveira, sou estudante de Economia e atualmente curso o sexto período. Ao longo da graduação, redescobri meu interesse pela área a partir de uma perspectiva mais aplicada e analítica. O que começou como uma curiosidade por macroeconomia e política evoluiu para uma verdadeira paixão por pesquisa, análise de dados e avaliação de políticas públicas.\nNeste espaço, reúno alguns dos projetos que desenvolvi durante a faculdade — tanto em disciplinas curriculares quanto em atividades extracurriculares e núcleos de capacitação — além de análises pessoais ainda em desenvolvimento.\nTodo o conteúdo aqui apresentado é de minha autoria e reflete meu processo contínuo de aprendizado e crescimento acadêmico.\nContato: leonardocerveira@outlook.com"
   }
 ]
