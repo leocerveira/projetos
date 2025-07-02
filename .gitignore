@@ -1,0 +1,16 @@
+# Arquivos gerados pelo Quarto
+*.html
+*_files/
+site_libs/
+search.json
+.quarto/
+
+# Arquivos do RStudio
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+
+# Dados output
+dados/saidas/
+
