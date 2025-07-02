@@ -1,0 +1,198 @@
+---
+title: "Análise do PIB Brasileiro e de Indicadores Socioeconômicos"
+format: html
+---
+
+## Objetivo do Projeto
+
+Temos como objetivo fazer uma análise detalhada do PIB Brasileiro, considerando os diferentes setores produtivos da economia, e relacionando-o também com indicadores socioeconômicos de naturezas distintas.
+
+## Pacotes Usados
+
+```{r setup, include=TRUE, message=FALSE, results='hide'}
+library(tidyverse)
+library(geobr)
+library(cartogram)
+library(sf)
+library(cowplot)
+```
+
+------------------------------------------------------------------------
+
+```{r code, echo=FALSE, include=FALSE}
+# Diretório de trabalho (exemplo)
+#setwd("C:/Users/user/Desktop/PUC/Econdata")
+
+# Carregando as bases (exemplo, ajuste conforme seu diretório)
+pibUF <- read.csv("C:/Users/leona/OneDrive/Imagens/Documentos/GitHub/projetos/dados/bases/base_projeto_pib_uf.csv")
+pibmunicipio <- read.csv("C:/Users/leona/OneDrive/Imagens/Documentos/GitHub/projetos/dados/bases/base_projeto_pib_municipio.csv")
+
+geo <- read_state(year = 2019, showProgress = FALSE)
+
+geo <- geo %>% 
+  rename(id_uf = code_state) # renomeando coluna para juntar no data frame pib
+
+# Juntando data frames
+pibUF <- full_join(geo, pibUF, by = "id_uf")
+
+# Agrupa o data frame por região e aplica uma função de resumo a todas as variáveis
+pibUF_regiao <- pibUF %>%
+  mutate(proporcao_imposto = impostos_liquidos / pib) %>%
+  group_by(name_region, ano) %>%
+  summarize(
+    prop_imposto_mean = mean(proporcao_imposto, na.rm = TRUE),
+    across(where(is.numeric), mean, na.rm = TRUE)
+  ) %>%
+  select(-starts_with("geom")) %>%
+  rename_with(~ gsub("_mean", "", .)) %>%
+  mutate(code_region = NULL)
+
+pibUF_estado.2019 <- pibUF %>%
+  filter(ano == 2019) %>%
+  group_by(name_state, ano, name_region) %>%
+  summarize(across(where(is.numeric), mean, na.rm = TRUE)) %>%
+  select(-starts_with("geom")) %>%
+  rename_with(~ gsub("_mean", "", .)) %>%
+  mutate(code_region = NULL)
+
+# Análise de Mapa
+geo_mapa <- st_transform(pibUF %>% filter(ano == 2019), crs = 3857)
+geo_mapa <- cartogram_cont(geo_mapa, "pib")
+
+# Relação entre impostos e PIB
+grafico_impostos_pib <- ggplot(data = pibUF_regiao, aes(x = pib / 1000000000, y = impostos_liquidos / 1000000000, color = name_region)) +
+  geom_point(size = 2) +
+  geom_smooth(alpha = 0) +
+  labs(
+    x = "PIB (bilhões)",
+    y = "Log Impostos (bilhões)",
+    title = "Relação entre Impostos e PIB por Região do Brasil - 2002 a 2020",
+    color = "Região"
+  ) +
+  scale_x_log10() + scale_y_log10() +
+  scale_color_brewer(palette = "Pastel1") +
+  theme_minimal()
+
+# Gráfico de Anamorfose (PIB x IDEB)
+grafico_ideb_pib <- ggplot() +
+  geom_sf(data = geo_mapa, aes(fill = ideb_ensino_publico_fundamental)) +
+  labs(x = NULL, y = NULL, title = "Anamorfose do Brasil - há correlação entre Ideb e PIB?", fill = "Ideb") +
+  scale_fill_viridis_c() +
+  geom_sf_text(
+    data = geo_mapa, 
+    aes(label = abbrev_state),  # Supondo que a coluna de siglas se chame 'sigla_estado'
+    size = 2.5, 
+    color = "gray1"
+  )
+
+# Análise da relação entre PIB, IDH e seus componentes
+pib.idh <- ggplot(data = pibUF_estado.2019, aes(x = pib / 1000000000, y = idhm_2010, color = name_region)) +
+  geom_point(size = 2, alpha = 3) +
+  labs(x = "PIB (bilhões)", y = "IDH", color = NULL) +
+  scale_x_log10(breaks = c(4, 20, 100, 500, 2500)) +
+  scale_color_brewer(palette = "Pastel2") +
+  theme_bw() +
+  theme(legend.direction = "horizontal", panel.grid = element_blank(), legend.text = element_text(size = 11))
+
+pib.exp.vida <- ggplot(data = pibUF_estado.2019, aes(x = pib / 1000000000, y = expectativa_vida_2010, color = name_region)) +
+  geom_point(size = 2, alpha = 3) +
+  labs(y = "Expectativa de Vida", color = NULL) +
+  scale_x_log10(breaks = c(4, 20, 100, 500, 2500)) +
+  scale_color_brewer(palette = "Pastel2") +
+  theme_bw() +
+  theme(legend.position = "none", panel.grid = element_blank(), axis.title.x = element_blank())
+
+pib.renda.pc <- ggplot(data = pibUF_estado.2019, aes(x = pib / 1000000000, y = renda_pc_2010, color = name_region)) +
+  geom_point(size = 2, alpha = 3) +
+  labs(y = "Renda per Capita", color = NULL) +
+  scale_x_log10(breaks = c(4, 20, 100, 500, 2500)) +
+  scale_color_brewer(palette = "Pastel2") +
+  theme_bw() +
+  theme(legend.position = "none", panel.grid = element_blank(), axis.title.x = element_blank())
+
+pib.escolaridade <- ggplot(data = pibUF_estado.2019, aes(x = pib / 1000000000, y = indice_escolaridade_2010, color = name_region)) +
+  geom_point(size = 2, alpha = 3) +
+  labs(y = "Escolaridade", color = NULL) +
+  scale_x_log10(breaks = c(4, 20, 100, 500, 2500)) +
+  scale_color_brewer(palette = "Pastel2") +
+  theme_bw() +
+  theme(legend.position = "none", panel.grid = element_blank(), axis.title.x = element_blank())
+
+pib.freq.escolar <- ggplot(data = pibUF_estado.2019, aes(x = pib / 1000000000, y = indice_frequencia_escolar_2010, color = name_region)) +
+  geom_point(size = 2, alpha = 3) +
+  labs(y = "Frequência Escolar", color = NULL) +
+  scale_x_log10(breaks = c(4, 20, 100, 500, 2500)) +
+  scale_color_brewer(palette = "Pastel2") +
+  theme_bw() +
+  theme(legend.position = "none", panel.grid = element_blank(), axis.title.x = element_blank())
+
+# Juntar os gráficos
+legend <- get_legend(pib.idh)
+pib.idh <- pib.idh + theme(legend.position = "none")
+
+grafico_idh_geral <- plot_grid(
+  plot_grid(pib.idh, ncol = 1),
+  plot_grid(pib.exp.vida, pib.renda.pc, ncol = 2),
+  plot_grid(pib.escolaridade, pib.freq.escolar, ncol = 2),
+  legend,
+  ncol = 1,
+  rel_heights = c(1.5, 1, 1, 0.5)
+)
+
+# Análise da relação entre PIB e Índice de Gini
+grafico_pib_gini <- ggplot(data = pibUF_estado.2019, aes(x = indice_gini_2010, y = idhm_2010, fill = name_region, size = pib)) +
+  geom_point(alpha = 0.8, shape = 21, color = "black") +
+  labs(x = "Índice de Gini", y = "IDH", fill = "Região", size = "PIB") +
+  scale_size_continuous(range = c(2, 24)) +
+  scale_x_log10(breaks = c(4, 20, 100, 500, 2500)) +
+  scale_fill_brewer(palette = "Pastel2") +
+  theme_minimal() + guides(size = "none") +
+  theme(legend.text = element_text(size = 10))
+
+# Função simples para retornar parâmetros e organizar exibição
+Retornadora <- function(grafico) {
+  return(grafico)
+}
+
+
+```
+
+## Relação de Impostos e as Regiões do Brasil
+
+Analisar a relação impostos/PIB ajuda a compreender o quanto cada UF contribui para a arrecadação levando em conta sua produção anual. A partir do gráfico, observa-se que tal relação mudou muito pouco nas últimas duas décadas, portanto, um aumento do PIB estadual causa um aumento similar da arrecadação por impostos. Nota-se, no entanto, que algumas regiões vem se distanciado dessa relação. Nos últimos anos, na região Centro-Oeste, por exemplo, o aumento do PIB da região não foi acompanhado de um aumento proporcional dos impostos arrecadados.
+
+```{r graf_impostos_pib, echo=FALSE, warning=FALSE, message=FALSE}
+Retornadora(grafico_impostos_pib)
+```
+
+## Gráfico de Anamorfose (Relação do PIB com o Ideb)
+
+A anamorfose é um tipo de análise por cartograma que evidencia uma variável em função do tamanho do território escolhido. No caso, o PIB distorce a área de cada UF de acordo com sua contribuição nacional.
+
+Nota-se que o PIB pouco se relaciona com níveis melhores de educação. Apesar disso, São Paulo lidera em ambas as áreas e, pelo lado do Ideb, Ceará, Goiás e Paraná também ssão destaques, apesar da baixa representação no PIB do país.
+
+```{r graf_ideb_pib, echo=FALSE}
+Retornadora(grafico_ideb_pib)
+```
+
+## Conjunto de Gráficos do IDH
+
+```{r graf_idh_geral, echo=FALSE}
+Retornadora(grafico_idh_geral)
+```
+
+## Relação entre IDH e Índice Gini
+
+```{r graf_pib_gini, echo=FALSE}
+Retornadora(grafico_pib_gini)
+```
+
+Os gráficos que relacionam PIB com o IDH e seus setores demonstram que, apesar das desigualdades regionais presentes em ambas as áreas, não observa-se forte correlação entre elas. O que é visível é que as regiões Norte e Nordeste não obtiveram destaque em nenhum dos comparativos.
+
+A relação entre o IDH e o Índice de Gini faz-se importante no contexto de grande desigualdade interegional do país. Mas, para além disso, é analisado se um índice que mede desigualdade também possui dispersão entre os estados brasileiros.
+
+O resultado encontrado é que há, sim, diferentes níveis de desigualdade no país, e estão fortemente correlacionados à qualidade de vida da unidade federativa: estados com pior IDH, presentes nas regiões Norte e Nordeste, mostram-se também os mais desiguais, enquanto a Região Sul encontra-se no outro extremo.
+
+## Conclusão
+
+O estudo do PIB brasileiro em seus diferentes setores produtivos, aliado a indicadores socioeconômicos como IDH, expectativa de vida, escolaridade e frequência escolar, permite visualizar disparidades e possíveis caminhos para o desenvolvimento regional. A análise de gráficos e mapas traz insights sobre a concentração de riqueza em determinados estados ao cruzar dados como o Ideb, IDH e PIB, explorando a relação entre desenvolvimento econômico e qualidade de vida.

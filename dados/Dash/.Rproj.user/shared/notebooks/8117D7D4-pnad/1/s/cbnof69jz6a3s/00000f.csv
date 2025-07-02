@@ -1,0 +1,19 @@
+"0",""
+"0","options(future.globals.maxSize = 16e+09)  # Define o limite para 16 GB"
+"0",""
+"0","dados <- readRDS(""C:/Users/leona/OneDrive/Imagens/Documentos/GitHub/projetos/dados/saidas/dados_pnad.rds"")"
+"0","dados_df <- bind_rows(lapply(dados, function(x) x$variables))"
+"2","G1;H1;Errorh in bind_rows(lapply(dados, function(x) x$variables)) : 
+  não foi possível encontrar a função ""bind_rows""
+Erros durante o embrulho: não há tantas estruturas na pilha
+Error: no more error handlers available (recursive errors?); invoking 'abort' restart
+g"
+"0","dados_df <- dados_df %>% "
+"0","  select(all_of(unname(variaveis_renomeadas))) %>% "
+"0","  mutate(ID = paste(Ano, domicílio, indivíduo, sep = ""_""))"
+"2","G1;H1;Errorh in dados_df %>% select(all_of(unname(variaveis_renomeadas))) %>%  : 
+  não foi possível encontrar a função ""%>%""
+g"
+"2","G1;Erros durante o embrulho: não há tantas estruturas na pilha
+H1;Errorh: no more error handlers available (recursive errors?); invoking 'abort' restart
+g"

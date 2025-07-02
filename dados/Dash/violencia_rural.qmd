@@ -1,0 +1,126 @@
+---
+title: "Violência Rural"
+format:
+  html:
+    fig-width: 12 
+    fig-height: 8  
+editor: visual
+---
+
+Pacotes utilizados:
+
+```{r, echo = TRUE, warning = FALSE, message = FALSE, results = 'hide'}
+lapply(c(
+  "datazoom.amazonia", 
+  "readxl", 
+  "tidyverse", 
+  "sf", 
+  "geobr", 
+  "viridis"), 
+  function(x) {library(x, character.only = T)})
+```
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE, results = 'hide'}
+data <- load_mapbiomas(
+  dataset = "mapbiomas_deforestation_regeneration",
+  raw_data = FALSE,
+  geo_level = "municipality",
+  language = "pt"
+)
+
+data <- data %>%
+filter(ano %in% (2012:2021),
+       classe_desmatamento %in% c("Supressao Veg. Primaria", "Supressao Veg. Secundaria"))
+
+```
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE, results = 'hide'}
+dados <- data %>%
+  group_by(municipio, cod_municipio, uf, ano) %>%  
+  summarise(area_desmatada = sum(valor, na.rm = TRUE)) %>%
+  mutate(ano = as.integer(ano))
+
+tipologia_mun <- read_excel("C:/Users/leona/OneDrive/Imagens/Documentos/GitHub/projetos/dados/bases/Tipologia_municipal_rural_urbano.xlsx", sheet = 2)
+
+municipios_rurais <- tipologia_mun %>%
+  rename(uf = SIG_UF,
+         cod_municipio = CD_GCMUN) %>%
+  mutate(municipio = NM_MUN %>% 
+           iconv(from = "UTF-8", to = "ASCII//TRANSLIT") %>%  # Remove acentos
+           str_replace_all("\\?", "'")) %>%                 # Substitui "?" por "'"
+  filter(TIPO != "Urbano") %>%
+  select(2, 3, 6)
+
+taxa_homi <- read.csv2("C:/Users/leona/OneDrive/Imagens/Documentos/GitHub/projetos/dados/bases/taxa-homicidios-2011.2021.csv")
+homi <- read.csv2("C:/Users/leona/OneDrive/Imagens/Documentos/GitHub/projetos/dados/bases/homicidios-2011.2021.csv")
+
+taxa_homi <- rename(taxa_homi, taxa_homicidio = valor)
+
+homicidios <- full_join(taxa_homi, homi)
+
+homicidios <- homicidios %>%
+  group_by(cod) %>%
+  arrange(período, .by_group = TRUE) %>%
+  mutate(crescimento_taxa_homicidio = if_else((lag(taxa_homicidio) >= 0 & lag(taxa_homicidio) < 1), 1, (taxa_homicidio - lag(taxa_homicidio)) / lag(taxa_homicidio) * 100), # calcular crescimento
+         municipio = nome %>% 
+           iconv(from = "UTF-8", to = "ASCII//TRANSLIT") %>%  
+           str_replace_all("\\?", "'"),
+         homicidios_ano_anterior = lag(valor)) %>% # Remover acentos
+  filter(período != 2011) %>%
+  rename(cod_municipio = cod,
+        ano = período) %>%
+  select(cod_municipio, municipio, ano, homicidios_ano_anterior, taxa_homicidio, crescimento_taxa_homicidio) %>%
+  arrange(municipio)
+
+dados_selecionados <- left_join(dados, homicidios) 
+
+dados_selecionados <- right_join(dados_selecionados, municipios_rurais, by = "cod_municipio") %>%
+  mutate(municipio = municipio.x, 
+         uf = uf.y) %>%
+  select(-municipio.x, -municipio.y, -uf.x, -uf.y)
+
+dados_selecionados <- dados_selecionados %>% 
+  filter(!is.na(ano),
+         homicidios_ano_anterior >= 2) %>%
+  mutate(crescimento_taxa_homicidio = as.numeric(crescimento_taxa_homicidio), 
+         area_desmatada = ifelse(is.na(area_desmatada), 0, area_desmatada))
+
+mapa <- read_municipality(year = 2021)
+mapa <- st_simplify(mapa, dTolerance = 10000) 
+
+
+dados_mapa <- left_join(mapa, dados_selecionados, by = c("code_muni" = "cod_municipio")) %>%
+  select(-municipio, -uf)
+
+dados_centroid <- st_point_on_surface(dados_mapa) %>% 
+  mutate(crescimento_taxa_homicidio = as.numeric(crescimento_taxa_homicidio)) %>%
+  group_by(ano) %>%
+  slice_max(crescimento_taxa_homicidio, n = 100, with_ties = FALSE)
+
+mapas <- list()
+
+# Loop para gerar os mapas de 2012 a 2021
+for (ano_atual in 2012:2021) {
+  mapas[[as.character(ano_atual)]] <- ggplot() +
+    # Camada de fundo: mapa completo com cor neutra para todos os municípios
+    geom_sf(data = mapa, fill = "grey80", color = NA) +
+    # Camada com os dados de municípios com informações (dados_mapa) – que podem estar em cada ano
+    geom_sf(data = dados_mapa %>% filter(ano == ano_atual), aes(fill = area_desmatada / 1000)) +
+    scale_fill_distiller(palette = "YlGn", name = "Área Desmatada (mil ha)", 
+                         breaks = c(10, 20, 30, 40)) +
+    # Camada dos centroides com taxa de homicídios
+    geom_sf(data = dados_centroid %>% filter(ano == ano_atual), aes(size = crescimento_taxa_homicidio),
+            shape = 21, fill = "darkred", alpha = 0.3) +
+    scale_size_continuous(range = c(1, 10), name = "% Crescimento dos Homicídios (p/ 100 mil hab.)") +
+    theme_minimal() +
+    labs(title = paste("Desmatamento e Homicídios em Municípios Rurais -", ano_atual),
+         caption = "Fonte: MapBiomas + IPEA") +
+    theme(legend.position = "bottom")
+}
+
+gc()
+
+for (ano_atual in 2012:2021) {
+  print(mapas[[as.character(ano_atual)]])
+}
+```

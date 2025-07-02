@@ -1,0 +1,186 @@
+---
+title: "Análise da Desigualdade Salarial no Brasil"
+format: html
+theme: lux
+author: "Leonardo Cerveira"
+date: "2025-06-02"
+---
+
+## Pacotes
+
+```{r, echo = TRUE, warning = FALSE, message = FALSE, results = 'hide'}
+lapply(list("basedosdados", "tidyverse", "geobr", "readr", "patchwork"), 
+       function(x) {library(x, character.only = TRUE)})
+```
+
+## Dados
+
+```{r, eval  = FALSE}
+set_billing_id("acesso-rais")
+
+query <- "
+SELECT 
+ano,
+id_municipio,
+raca_cor,
+valor_remuneracao_media,
+tipo_vinculo
+FROM `basedosdados.br_me_rais.microdados_vinculos`
+WHERE ano IN (2012, 2014, 2016)
+"
+
+# Carregando dados
+dados <- read_sql(query)
+tipo <- read_sql("SELECT tipo_vinculo FROM `basedosdados.br_me_rais.microdados_vinculos` WHERE ano IN (2012, 2014, 2016)")
+
+# Salvando
+saveRDS(dados, "dados_rais.rds")
+write_csv(dados, "dados_rais.csv")
+
+
+```
+
+```{r, }
+
+dados <- readRDS("C:/Users/leona/OneDrive/Imagens/Documentos/GitHub/projetos/dados/saidas/dados_rais.rds")
+
+```
+
+```{r, }
+# Tratamento
+dados_rais <- dados %>%
+  mutate(clt = ifelse(tipo_vinculo %in% c(10, 15, 20, 25, 55, 60, 65, 70, 75, 90, 95, 96, 97), 1, 0)) %>%
+  group_by(ano, id_municipio) %>%
+  summarise(
+    emprego_total = n(),
+    emprego_clt = sum(clt, na.rm = TRUE),
+    salario_medio_total = mean(valor_remuneracao_media, na.rm = TRUE),
+    
+    salario_medio_brancos = mean(valor_remuneracao_media[raca_cor == 2], na.rm = TRUE),
+    salario_medio_negros  = mean(valor_remuneracao_media[raca_cor %in% c(4, 8)], na.rm = TRUE),
+    
+    razao_salarial = salario_medio_brancos / salario_medio_negros,
+    .groups = "drop"
+  )
+
+```
+
+## Gráficos
+
+### Distribuição dos salários médios
+
+```{r, }
+
+medias_ano <- dados_rais %>%
+  group_by(ano) %>%
+  summarise(media = mean(salario_medio_total, na.rm = TRUE))
+
+```
+
+**Histograma**
+
+```{r, }
+
+grafico_histograma <- ggplot(dados_rais, aes(x = salario_medio_total, fill = as.factor(ano))) +
+  geom_histogram(binwidth = 200, color = "white", alpha = 0.4) +
+  facet_wrap(~ano) +
+  labs(
+    title = "Distribuição dos salários médios por município",
+    x = NULL, 
+    y = "Número de municípios"
+  ) +
+  coord_cartesian(xlim = c(500, 3500)) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(size = 13, face = "bold", hjust = 0.45)
+  )
+
+```
+
+**Densidade**
+
+```{r, }
+
+grafico_densidade <- ggplot(dados_rais, aes(x = salario_medio_total, fill = as.factor(ano))) +
+  geom_density(alpha = 0.4) +
+  geom_vline(data = medias_ano, aes(xintercept = media, color = as.factor(ano)),
+             linetype = "dashed", linewidth = 0.6) +
+  labs(
+    title = NULL,
+    x = "Salário médio (R$)",
+    y = "Densidade",
+    fill = "Ano"  
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  coord_cartesian(xlim = c(0, 3500))
+
+```
+
+**Combinando:**
+
+```{r, }
+
+distribuicao <- grafico_histograma / grafico_densidade
+
+print(distribuicao)
+
+```
+
+### Mapa da razão salarial entre brancos e negros
+
+```{r, }
+
+mun <- read_municipality(code_muni = "all", year = 2016)
+
+dados_mapa <- mun %>%
+  mutate(code_muni = as.character(code_muni)) %>%
+  left_join(dados_rais %>% filter(ano == 2016), by = c("code_muni" = "id_municipio"))
+
+```
+
+```{r, }
+
+mapa <- ggplot() +
+  # Camada de fundo neutra com todos os municípios
+  geom_sf(data = mun, fill = "grey80", color = NA) +
+    
+  # Camada com os dados da razão salarial
+  geom_sf(data = dados_mapa, aes(fill = razao_salarial), color = NA) +
+    
+  # Escala de cores com paleta viridis
+  scale_fill_viridis_c(
+    option = "E",
+    limits = c(0, 3),
+    breaks = c(1, 2, 3),
+    labels = c("1", "2", "3+"),
+    name = "Brancos / Negros",
+    oob = scales::squish
+  ) +
+ 
+  # Título e tema
+  labs(
+    title = "Razão salarial entre brancos e negros em 2016",
+    caption = "Fonte: RAIS 2016"
+  ) +
+  theme_bw() +
+  theme(
+    legend.position = "inside",
+    legend.position.inside = c(0.85, 0.2),
+    legend.title = element_text(size = 10),
+    legend.text = element_text(size = 9),
+    plot.title = element_text(size = 13, face = "bold", hjust = 0.5)
+  )
+
+print(mapa)
+
+```
+
+## Análise
+
+A análise da distribuição dos salários médios municipais mostra um avanço geral entre 2012 e 2016, com as curvas de densidade e os histogramas indicando um deslocamento para a direita — ou seja, um aumento nos salários médios. Apesar disso, os salários continuaram fortemente concentrados entre R\$ 1.000 e R\$ 2.000.
+
+O segundo gráfico evidencia a desigualdade racial nos rendimentos. Em 2016, muitos municípios — especialmente nas regiões Norte e parte do Centro-Oeste — apresentaram razão salarial entre brancos e negros (pretos e pardos) superior a 3. Isso significa que, em média, trabalhadores brancos recebiam mais do que o triplo do salário de trabalhadores negros nessas localidades, revelando desigualdades estruturais profundas no mercado de trabalho.
+
+Esses resultados reforçam a importância de compreender o Brasil como um país marcado por desigualdades históricas e persistentes, que se manifestam de forma interseccional em diferentes dimensões — como cor, território e classe. Avaliar a evolução dos indicadores econômicos com esse olhar crítico é essencial para orientar políticas públicas comprometidas com justiça social e equidade.

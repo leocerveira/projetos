@@ -1,0 +1,56 @@
+"0","lapply(list(""survey"", ""tidyverse"", ""PNADcIBGE"", ""future"", ""future.apply"", ""progressr"", ""data.table"", ""patchwork"", ""modelsummary"", ""kableExtra""), function(x) {library(x, character.only = TRUE)})"
+"1","[[1]]
+ [1] ""survey""    ""survival""  ""Matrix""    ""grid""      ""stats""     ""graphics""  ""grDevices"" ""utils""     ""datasets""  ""methods""  
+[11] ""base""     
+
+[[2]]
+ [1] ""lubridate"" ""forcats""   ""stringr""   ""dplyr""     ""purrr""     ""readr""     ""tidyr""     ""tibble""    ""ggplot2""   ""tidyverse""
+[11] ""survey""    ""survival""  ""Matrix""    ""grid""      ""stats""     ""graphics""  ""grDevices"" ""utils""     ""datasets""  ""methods""  
+[21] ""base""     
+
+[[3]]
+ [1] ""PNADcIBGE"" ""lubridate"" ""forcats""   ""stringr""   ""dplyr""     ""purrr""     ""readr""     ""tidyr""     ""tibble""    ""ggplot2""  
+[11] ""tidyverse"" ""survey""    ""survival""  ""Matrix""    ""grid""      ""stats""     ""graphics""  ""grDevices"" ""utils""     ""datasets"" 
+[21] ""methods""   ""base""     
+
+[[4]]
+ [1] ""future""    ""PNADcIBGE"" ""lubridate"" ""forcats""   ""stringr""   ""dplyr""     ""purrr""     ""readr""     ""tidyr""     ""tibble""   
+[11] ""ggplot2""   ""tidyverse"" ""survey""    ""survival""  ""Matrix""    ""grid""      ""stats""     ""graphics""  ""grDevices"" ""utils""    
+[21] ""datasets""  ""methods""   ""base""     
+
+[[5]]
+ [1] ""future.apply"" ""future""       ""PNADcIBGE""    ""lubridate""    ""forcats""      ""stringr""      ""dplyr""        ""purrr""       
+ [9] ""readr""        ""tidyr""        ""tibble""       ""ggplot2""      ""tidyverse""    ""survey""       ""survival""     ""Matrix""      
+[17] ""grid""         ""stats""        ""graphics""     ""grDevices""    ""utils""        ""datasets""     ""methods""      ""base""        
+
+[[6]]
+ [1] ""progressr""    ""future.apply"" ""future""       ""PNADcIBGE""    ""lubridate""    ""forcats""      ""stringr""      ""dplyr""       
+ [9] ""purrr""        ""readr""        ""tidyr""        ""tibble""       ""ggplot2""      ""tidyverse""    ""survey""       ""survival""    
+[17] ""Matrix""       ""grid""         ""stats""        ""graphics""     ""grDevices""    ""utils""        ""datasets""     ""methods""     
+[25] ""base""        
+
+[[7]]
+ [1] ""data.table""   ""progressr""    ""future.apply"" ""future""       ""PNADcIBGE""    ""lubridate""    ""forcats""      ""stringr""     
+ [9] ""dplyr""        ""purrr""        ""readr""        ""tidyr""        ""tibble""       ""ggplot2""      ""tidyverse""    ""survey""      
+[17] ""survival""     ""Matrix""       ""grid""         ""stats""        ""graphics""     ""grDevices""    ""utils""        ""datasets""    
+[25] ""methods""      ""base""        
+
+[[8]]
+ [1] ""patchwork""    ""data.table""   ""progressr""    ""future.apply"" ""future""       ""PNADcIBGE""    ""lubridate""    ""forcats""     
+ [9] ""stringr""      ""dplyr""        ""purrr""        ""readr""        ""tidyr""        ""tibble""       ""ggplot2""      ""tidyverse""   
+[17] ""survey""       ""survival""     ""Matrix""       ""grid""         ""stats""        ""graphics""     ""grDevices""    ""utils""       
+[25] ""datasets""     ""methods""      ""base""        
+
+[[9]]
+ [1] ""modelsummary"" ""patchwork""    ""data.table""   ""progressr""    ""future.apply"" ""future""       ""PNADcIBGE""    ""lubridate""   
+ [9] ""forcats""      ""stringr""      ""dplyr""        ""purrr""        ""readr""        ""tidyr""        ""tibble""       ""ggplot2""     
+[17] ""tidyverse""    ""survey""       ""survival""     ""Matrix""       ""grid""         ""stats""        ""graphics""     ""grDevices""   
+[25] ""utils""        ""datasets""     ""methods""      ""base""        
+
+[[10]]
+ [1] ""kableExtra""   ""modelsummary"" ""patchwork""    ""data.table""   ""progressr""    ""future.apply"" ""future""       ""PNADcIBGE""   
+ [9] ""lubridate""    ""forcats""      ""stringr""      ""dplyr""        ""purrr""        ""readr""        ""tidyr""        ""tibble""      
+[17] ""ggplot2""      ""tidyverse""    ""survey""       ""survival""     ""Matrix""       ""grid""         ""stats""        ""graphics""    
+[25] ""grDevices""    ""utils""        ""datasets""     ""methods""      ""base""        
+
+"

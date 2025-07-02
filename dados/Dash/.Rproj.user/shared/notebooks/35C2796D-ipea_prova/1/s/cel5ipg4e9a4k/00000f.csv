@@ -1,0 +1,9 @@
+"0","dados <- readRDS(""C:/Users/leona/OneDrive/Imagens/Documentos/GitHub/projetos/dados/saidasdados_rais.rds"")
+"
+"2","G2;H2;Warningh in gzfile(file, ""rb"") :
+  não foi possível abrir o arquivo comprimido 'C:/Users/leona/OneDrive/Imagens/Documentos/GitHub/projetos/dados/saidasdados_rais.rds', motivo provável 'No such file or directory'g
+"
+"2","G1;H1;Errorh in gzfile(file, ""rb"") : não é possível abrir a conexão
+Erros durante o embrulho: não há tantas estruturas na pilha
+Error: no more error handlers available (recursive errors?); invoking 'abort' restart
+g"

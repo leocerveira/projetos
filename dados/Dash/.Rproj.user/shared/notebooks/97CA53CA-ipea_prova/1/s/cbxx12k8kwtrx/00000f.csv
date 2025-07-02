@@ -1,0 +1,5 @@
+"0",""
+"0","dados <- readRDS(""dados_rais.rds"")"
+"2","G1;Erros durante o embrulho: não há tantas estruturas na pilha
+H1;Errorh: no more error handlers available (recursive errors?); invoking 'abort' restart
+g"

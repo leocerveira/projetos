@@ -1,0 +1,79 @@
+"0","set_billing_id(""acesso-rais"")"
+"2","Project keys set successfully
+"
+"0","query <- """
+"0","SELECT "
+"0","ano,"
+"0","id_municipio,"
+"0","raca_cor,"
+"0","valor_remuneracao_media,"
+"0","tipo_vinculo"
+"0","FROM `basedosdados.br_me_rais.microdados_vinculos`"
+"0","WHERE ano IN (2012, 2014, 2016)"
+"0",""""
+"0",""
+"0","# Carregando dados"
+"0","dados <- read_sql(query)"
+"2","[38;5;251mThe [34mbigrquery[38;5;251m package is requesting access to your Google account.
+Enter '1' to start a new auth process or select a pre-authorized account.
+[1m1[22m: Send me to the browser for a new auth process.
+[1m2[22m: leonardocerveira123@gmail.com[39m
+"
+"0","1"
+"2","G3;Waiting for authentication in browser...
+g"
+"2","G3;Press Esc/Ctrl + C to abort
+g"
+"2","G3;Authentication complete.
+g"
+"2","G3;Running job acesso-rais.job_CHaYQMfsFokeUrFuaB8QWeJ3Ylpd.US ⠙ 2.3sg"
+"2","G3;Running job acesso-rais.job_CHaYQMfsFokeUrFuaB8QWeJ3Ylpd.US ⠹ 2.7sg"
+"2","G3;Running job acesso-rais.job_CHaYQMfsFokeUrFuaB8QWeJ3Ylpd.US ⠸ 3.3sg"
+"2","G3;Running job acesso-rais.job_CHaYQMfsFokeUrFuaB8QWeJ3Ylpd.US ⠼ 3.6sg"
+"2","G3;Running job acesso-rais.job_CHaYQMfsFokeUrFuaB8QWeJ3Ylpd.US ⠴ 4.2sg"
+"2","G3;Running job acesso-rais.job_CHaYQMfsFokeUrFuaB8QWeJ3Ylpd.US ⠦ 4.5sg"
+"2","G3;Running job acesso-rais.job_CHaYQMfsFokeUrFuaB8QWeJ3Ylpd.US ⠧ 5.1sg"
+"2","G3;Running job acesso-rais.job_CHaYQMfsFokeUrFuaB8QWeJ3Ylpd.US ⠇ 5.4sg"
+"2","G3;Running job acesso-rais.job_CHaYQMfsFokeUrFuaB8QWeJ3Ylpd.US ⠏ 6s  g"
+"2","G3;Running job acesso-rais.job_CHaYQMfsFokeUrFuaB8QWeJ3Ylpd.US ⠋ 6.2sg"
+"2","G3;Running job acesso-rais.job_CHaYQMfsFokeUrFuaB8QWeJ3Ylpd.US ⠙ 6.8sg"
+"2","G3;Running job acesso-rais.job_CHaYQMfsFokeUrFuaB8QWeJ3Ylpd.US ⠹ 7.1sg"
+"2","G3;Running job acesso-rais.job_CHaYQMfsFokeUrFuaB8QWeJ3Ylpd.US ⠸ 7.7sg"
+"2","G3;Running job acesso-rais.job_CHaYQMfsFokeUrFuaB8QWeJ3Ylpd.US ⠼ 7.9sg"
+"2","G3;Running job acesso-rais.job_CHaYQMfsFokeUrFuaB8QWeJ3Ylpd.US ⠴ 8.5sg"
+"2","G3;Running job acesso-rais.job_CHaYQMfsFokeUrFuaB8QWeJ3Ylpd.US ⠦ 8.8sg"
+"2","G3;Running job acesso-rais.job_CHaYQMfsFokeUrFuaB8QWeJ3Ylpd.US ⠧ 9.4sg"
+"2","G3;Running job acesso-rais.job_CHaYQMfsFokeUrFuaB8QWeJ3Ylpd.US ⠇ 9.6sg"
+"2","G3;Running job acesso-rais.job_CHaYQMfsFokeUrFuaB8QWeJ3Ylpd.US ⠏ 10.2sg"
+"2","G3;Running job acesso-rais.job_CHaYQMfsFokeUrFuaB8QWeJ3Ylpd.US ⠋ 10.5sg"
+"2","G3;Running job acesso-rais.job_CHaYQMfsFokeUrFuaB8QWeJ3Ylpd.US ⠋ 10.5sg"
+"2","G3;
+g"
+"2","[38;5;251mJob complete[39m
+"
+"2","[38;5;251mBilled: 6.93 GB[39m
+"
+"2","[38;5;251mDownloading first chunk of data.[39m
+"
+"2","[38;5;251mReceived 275,941 rows in the first chunk.[39m
+"
+"2","[38;5;251mDownloading the remaining 216,302,421 rows in 1046 chunks of (up to) 206,955 rows.[39m
+"
+"2","G1;Erros durante o embrulho: não há tantas estruturas na pilha
+H1;Errorh: no more error handlers available (recursive errors?); invoking 'abort' restart
+g"
+"0","tipo <- read_sql(""SELECT tipo_vinculo FROM `basedosdados.br_me_rais.microdados_vinculos` WHERE ano IN (2012, 2014, 2016)"")"
+"2","G1;Erros durante o embrulho: não há tantas estruturas na pilha
+H1;Errorh: no more error handlers available (recursive errors?); invoking 'abort' restart
+g"
+"0","# Salvando"
+"0","saveRDS(dados, ""dados_rais.rds"")"
+"2","G1;Erro: objeto 'dados' não encontrado
+Erros durante o embrulho: não há tantas estruturas na pilha
+H1;Errorh: no more error handlers available (recursive errors?); invoking 'abort' restart
+g"
+"0","write_csv(dados, ""dados_rais.csv"")"
+"2","G1;Erro: objeto 'dados' não encontrado
+Erros durante o embrulho: não há tantas estruturas na pilha
+H1;Errorh: no more error handlers available (recursive errors?); invoking 'abort' restart
+g"

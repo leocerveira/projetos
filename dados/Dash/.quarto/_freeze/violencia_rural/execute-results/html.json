@@ -1,0 +1,17 @@
+{
+  "hash": "a15e40442941465923641b7a67a0cf61",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Violência Rural\"\nformat:\n  html:\n    fig-width: 12 \n    fig-height: 8  \neditor: visual\n---\n\n\n\n\nPacotes utilizados:\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlapply(c(\n  \"datazoom.amazonia\", \n  \"readxl\", \n  \"tidyverse\", \n  \"sf\", \n  \"geobr\", \n  \"viridis\"), \n  function(x) {library(x, character.only = T)})\n```\n:::\n\n::: {.cell}\n\n:::\n\n::: {.cell}\n::: {.cell-output-display}\n![](violencia_rural_files/figure-html/unnamed-chunk-3-1.png){width=1152}\n:::\n\n::: {.cell-output-display}\n![](violencia_rural_files/figure-html/unnamed-chunk-3-2.png){width=1152}\n:::\n\n::: {.cell-output-display}\n![](violencia_rural_files/figure-html/unnamed-chunk-3-3.png){width=1152}\n:::\n\n::: {.cell-output-display}\n![](violencia_rural_files/figure-html/unnamed-chunk-3-4.png){width=1152}\n:::\n\n::: {.cell-output-display}\n![](violencia_rural_files/figure-html/unnamed-chunk-3-5.png){width=1152}\n:::\n\n::: {.cell-output-display}\n![](violencia_rural_files/figure-html/unnamed-chunk-3-6.png){width=1152}\n:::\n\n::: {.cell-output-display}\n![](violencia_rural_files/figure-html/unnamed-chunk-3-7.png){width=1152}\n:::\n\n::: {.cell-output-display}\n![](violencia_rural_files/figure-html/unnamed-chunk-3-8.png){width=1152}\n:::\n\n::: {.cell-output-display}\n![](violencia_rural_files/figure-html/unnamed-chunk-3-9.png){width=1152}\n:::\n\n::: {.cell-output-display}\n![](violencia_rural_files/figure-html/unnamed-chunk-3-10.png){width=1152}\n:::\n:::\n",
+    "supporting": [
+      "violencia_rural_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

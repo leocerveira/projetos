@@ -1,0 +1,287 @@
+---
+title: "Análise da COVID-19"
+format: html
+editor: visual
+---
+
+## Introdução
+
+Este projeto analisou dados da COVID-19 no Brasil e no estado de Minas Gerais, explorando a distribuição dos casos e óbitos ao longo do tempo e através de uma análise geoespacial.
+
+```{r global, include = FALSE}
+# (1) Carregamento de pacotes e dados
+
+library(shiny)
+library(tidyverse)
+library(RSQLite)
+library(DBI)
+library(sf)
+library(geobr)
+library(stats)
+library(RColorBrewer)
+library(leaflet)
+
+# (2) Conexão com o banco, leitura e manipulação de dados ----
+
+con <- dbConnect(RSQLite::SQLite(), dbname = "C:/Users/leona/OneDrive/Imagens/Documentos/GitHub/projetos/dados/bases/base.db")
+Estado_regiao <- dbGetQuery(con, "SELECT Estado.* , Regiao.* FROM Estado JOIN Regiao ON Estado.CodigoRegiao = Regiao.CodigoRegiao;")
+Estado_regiao <- Estado_regiao[, -5]
+dbDisconnect(con)
+
+casos <- read.csv2("C:/Users/leona/OneDrive/Imagens/Documentos/GitHub/projetos/dados/bases/casos.csv") %>%
+  rename(UF = uf)
+
+casos_estado <- casos %>% filter(tipo == "state")
+casos_estado <- casos_estado[,-1]  # retira coluna vazia
+
+# Função para média móvel
+calcular_media_movel_mortes <- function(x, janela = 6) {
+  media_movel <- numeric(length(x))
+  for (i in janela:length(x)) {
+    media_movel[i] <- mean(x[(i - janela + 1):i])
+  }
+  return(media_movel)
+}
+
+# Junta Estado_regiao com casos
+casos_estado <- right_join(x = Estado_regiao, y = casos_estado, by = "UF")
+
+# Filtragem para cidades
+casos_cidades <- right_join(x = Estado_regiao, y = casos, by = "UF") %>%
+  filter(tipo == "city")
+
+# Minas Gerais
+casos_MG_estado <- casos %>% filter(UF == "MG", tipo == "state")
+casos_MG_estado <- casos_MG_estado[ ,-1]
+
+# Casos e óbitos acumulados
+casos_MG_estado <- casos_MG_estado %>%
+  mutate(casosacumulados = cumsum(casosnovos),
+         mortesacumuladas = cumsum(mortesnovas))
+
+casos_pais <- casos_estado %>%
+  group_by(data) %>%
+  summarize(casospais = sum(casosnovos),
+            mortespais = sum(mortesnovas))
+
+# Merge com MG
+casos_selecionados <- merge(casos_pais, casos_MG_estado, by = "data") %>%
+  select(data, casospais, mortespais, casosnovos, mortesnovas, casosacumulados, mortesacumuladas) %>%
+  mutate(data = as.Date(data, format = "%d/%m/%Y")) %>%
+  arrange(data) %>%
+  mutate(contador = row_number(),
+         mediacasoestado = casospais / 27,
+         mediamorteestado = mortespais / 27) %>%
+  rename(casosmg = casosnovos,
+         mortesmg = mortesnovas)
+
+# Agrupando casos por dia/região
+casos_diarios <- casos_estado %>%
+  mutate(data = as.Date(data, format = "%d/%m/%Y")) %>%
+  group_by(data, NomeRegiao) %>%
+  reframe(casosdia = sum(casosnovos),
+          mortesdia = sum(mortesnovas))
+
+# Média quinzenal
+casos_diarios <- casos_diarios %>%
+  mutate(quinzena = ifelse(as.numeric(format(data, "%d")) <= 15, "1", "2"),
+         mes = format(data, "%m")) %>%
+  group_by(mes, quinzena) %>%
+  mutate(mediacasos15 = mean(casosdia),
+         mediamortes15 = mean(mortesdia),
+         dia = as.Date(paste("2020", mes, ifelse(quinzena == "1", "08", "23"), sep = "-")))
+
+# Remove médias da primeira quinzena
+casos_diarios$mediacasos15[1:5] <- NA
+casos_diarios$mediamortes15[1:5] <- NA
+
+# Adicionando média móvel ao casos_selecionados
+casos_selecionados <- casos_selecionados %>%
+  mutate(mediamovelpais = calcular_media_movel_mortes(mortespais),
+         mediamovelmg = calcular_media_movel_mortes(mortesmg))
+
+# Merge auxiliar
+caca <- merge(casos_diarios, casos_selecionados)
+
+# Top 50 letalidade
+top_50_cidades <- casos_cidades %>%
+  group_by(nomelocalidade, NomeEstado, NomeRegiao) %>%
+  reframe(casos = sum(casosnovos),
+          mortes = sum(mortesnovas)) %>%
+  mutate(letalidade = mortes / casos) %>%
+  filter(casos >= 100, nomelocalidade != "Importados/Indefinidos") %>%
+  arrange(desc(letalidade)) %>%
+  slice(1:50)
+
+# Mapas
+extract_dir_UF <- "C:/trabalho/BR_UF"
+UF_shp <- file.path(extract_dir_UF, "BR_UF_2022.shp")
+sf_UF <- st_read(UF_shp)
+
+extract_dir_muni <- "C:/trabalho/BR_Mun"
+muni_shp <- file.path(extract_dir_muni, "BR_Municipios_2022.shp")
+sf_Municipios <- st_read(muni_shp)
+
+# Somando casos
+casos_somados_estados <- casos_estado %>%
+  group_by(codigoibge, populacao) %>%
+  reframe(casosnovos = sum(casosnovos),
+          mortesnovas = sum(mortesnovas)) %>%
+  mutate(mortalidade = mortesnovas / populacao,
+         letalidade = mortesnovas / casosnovos)
+
+UFS_BR <- sf_UF %>%
+  rename(codigoibge = CD_UF)
+
+UFS_BR <- merge(casos_somados_estados, UFS_BR, all = TRUE)
+UFS_BR <- st_as_sf(UFS_BR)
+
+# MG
+SF_MUN <- sf_Municipios %>%
+  filter(SIGLA_UF == "MG") %>%
+  rename(codigoibge = CD_MUN)
+
+SF_MUN <- merge(SF_MUN, casos_somados_estados, all = TRUE) %>%
+  st_as_sf()
+
+# Paletas
+paleta  <- colorRampPalette(brewer.pal(9, "Reds"))
+paleta2 <- colorRampPalette(brewer.pal(9, "Blues"))
+
+# Gráficos
+
+options(scipen = 999)
+
+mapa_br_mortalidade <- ggplot(UFS_BR) +
+  geom_sf(aes(fill = mortalidade)) +
+  labs(fill = "Mortalidade", title = "Óbitos por Habitantes no Brasil") +
+  geom_sf_text(aes(label = SIGLA_UF), size = 2, color = "black") +
+  scale_fill_gradientn(colors = paleta(12), labels = scales::percent) +
+  theme_minimal() +
+  theme(panel.background = element_rect(fill = "azure"),
+        panel.grid = element_blank(),
+        axis.title = element_blank())
+
+mapa_br_letalidade <- ggplot(UFS_BR) +
+  geom_sf(aes(fill = letalidade)) +
+  labs(fill = "Letalidade", title = "Óbitos por Casos Confirmados no Brasil") +
+  geom_sf_text(aes(label = SIGLA_UF), size = 2, color = "darkgray") +
+  scale_fill_gradientn(colors = paleta2(12), labels = scales::percent) +
+  theme_minimal() +
+  theme(panel.background = element_rect(fill = "antiquewhite"),
+        panel.grid = element_blank(),
+        axis.title = element_blank())
+
+grafico_casos <- ggplot(casos_selecionados) +
+  geom_point(aes(x = contador, y = casospais, color = "Brasil")) +
+  geom_point(aes(x = contador, y = casosmg, color = "Minas Gerais")) +
+  geom_line(aes(x = contador, y = casospais, color = "Brasil")) +
+  geom_line(aes(x = contador, y = casosmg, color = "Minas Gerais")) +
+  geom_line(data = caca, aes(x = contador, y = mediacasoestado, color = "Média UFs"), size = 1) +
+  scale_color_manual(values = c("Brasil" = "darkkhaki", "Minas Gerais" = "slateblue", "Média UFs" = "cornflowerblue")) +
+  labs(x = "Dias", y = NULL, title = "Casos Confirmados (Brasil x MG)", color = NULL) +
+  theme_classic()
+
+grafico_media_movel <- ggplot(casos_selecionados) +
+  geom_point(aes(x = contador, y = mediamovelpais, color = "Brasil")) +
+  geom_point(aes(x = contador, y = mediamovelmg, color = "Minas Gerais")) +
+  geom_line(aes(x = contador, y = mediamovelpais, color = "Brasil")) +
+  geom_line(aes(x = contador, y = mediamovelmg, color = "Minas Gerais")) +
+  scale_color_manual(values = c("Brasil" = "gold", "Minas Gerais" = "saddlebrown")) +
+  labs(x = "Dias", y = NULL, title = "Média Móvel de Óbitos (Brasil x MG)", color = NULL) +
+  theme_classic()
+
+grafico_acumulados <- ggplot(casos_selecionados) +
+  geom_point(aes(x = contador, y = casosacumulados, color = "Casos Acumulados")) +
+  geom_point(aes(x = contador, y = mortesacumuladas, color = "Óbitos Acumulados")) +
+  geom_line(aes(x = contador, y = casosacumulados, color = "Casos Acumulados")) +
+  geom_line(aes(x = contador, y = mortesacumuladas, color = "Óbitos Acumulados")) +
+  scale_color_manual(name = NULL, values = c("Casos Acumulados" = "cornflowerblue", "Óbitos Acumulados" = "lightcoral")) +
+  scale_y_log10(breaks = c(50, 1000, 20000, 400000)) +
+  labs(x = "Dias", y = "(Escala Logarítmica)", title = "Casos e Óbitos em MG") +
+  theme_minimal()
+
+grafico_casos_regiao.1 <- ggplot(casos_diarios, aes(x = data, y = casosdia, color = NomeRegiao)) +
+  geom_point() +
+  geom_point(aes(x = dia, y = mediacasos15), color = "slateblue", shape = 20, size = 4, alpha = 2) +
+  geom_smooth(color = "saddlebrown", alpha = 0.2, linetype = "dashed") +
+  labs(title = "Casos no Brasil (Médias Quinzenais)", y = "Casos Diários por UF", x = NULL, color = "Região") +
+  ylim(0, 30000) +
+  theme_minimal() +
+  scale_color_brewer(palette = "Pastel2")
+
+grafico_casos_regiao.2 <- ggplot(casos_diarios, aes(x = data, y = casosdia, color = NomeRegiao)) +
+  geom_point() +
+  geom_point(aes(x = dia, y = mediacasos15), color = "slateblue", shape = 20, size = 2, alpha = 2) +
+  labs(title = "Casos no Brasil (Médias Quinzenais)", y = "Casos Diários por UF", x = NULL) +
+  scale_y_continuous(breaks  = seq(0, 35000, 15000)) +
+  theme(legend.position = "none") +
+  scale_color_brewer(palette = "Pastel2") +
+  facet_grid(NomeRegiao ~ .)
+
+grafico_obitos_regiao.1 <- ggplot(casos_diarios, aes(x = data, y = mortesdia, color = NomeRegiao)) +
+  geom_point() +
+  geom_point(aes(x = dia, y = mediamortes15), color = "slateblue", shape = 20, size = 4, alpha = 2) +
+  geom_smooth(color = "saddlebrown", alpha = 0.2, linetype = "dashed") +
+  labs(title = "Mortes no Brasil (Médias Quinzenais)", y = "Óbitos Diários por UF", x = NULL, color = "Região") +
+  ylim(0, 800) +
+  theme_minimal() +
+  scale_color_brewer(palette = "Pastel2")
+
+grafico_obitos_regiao.2 <- ggplot(casos_diarios, aes(x = data, y = mortesdia, color = NomeRegiao)) +
+  geom_point() +
+  geom_point(aes(x = dia, y = mediamortes15), color = "slateblue", shape = 20, size = 2, alpha = 2) +
+  labs(title = "Mortes no Brasil (Médias Quinzenais)", y = "Óbitos Diários por UF", x = NULL) +
+  scale_y_continuous(breaks = seq(0, 800, 400)) +
+  theme(legend.position = "none") +
+  scale_color_brewer(palette = "Pastel2") +
+  facet_grid(NomeRegiao ~ .)
+
+
+```
+
+```{r grafico 1, echo = FALSE, warning = FALSE, fig.height=5, message=FALSE}
+grafico_casos_regiao.1
+
+
+```
+
+```{r grafico 2, echo = FALSE, warning = FALSE, fig.height=5}
+grafico_casos_regiao.2
+```
+
+```{r grafico 3, echo = FALSE, warning = FALSE, fig.height=5, message=FALSE}
+grafico_obitos_regiao.1
+
+```
+
+```{r grafico 4, echo = FALSE, warning = FALSE, fig.height=5}
+grafico_obitos_regiao.2
+
+```
+
+```{r grafico 5, echo = FALSE, warning = FALSE, fig.height=5}
+
+grafico_casos
+
+```
+
+```{r grafico 6, echo = FALSE, warning = FALSE, fig.height=5}
+grafico_media_movel
+
+```
+
+```{r grafico 7, echo = FALSE, warning = FALSE, fig.height=5}
+grafico_acumulados
+
+
+```
+
+```{r grafico 8, echo = FALSE, warning = FALSE, fig.height=5}
+mapa_br_mortalidade
+
+```
+
+```{r grafico 9, echo = FALSE, warning = FALSE, fig.height=5}
+mapa_br_letalidade
+```

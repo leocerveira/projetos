@@ -1,0 +1,6 @@
+"0","# SALVAR E CARREGAR DADOS"
+"0",""
+"0","# save(list = ls(), file = ""C:/Users/leona/OneDrive/Imagens/Documentos/GitHub/projetos/dados/saidas/dados_pnad.RData"")"
+"0"," load(""C:/Users/leona/OneDrive/Imagens/Documentos/GitHub/projetos/dados/saidas/dados_pnad.RData"")"
+"0",""
+"0","# write.csv2(dados_df, ""C:/Users/leona/OneDrive/Imagens/Documentos/GitHub/projetos/dados/saidas/dados_pnad.csv"", row.names = FALSE)"

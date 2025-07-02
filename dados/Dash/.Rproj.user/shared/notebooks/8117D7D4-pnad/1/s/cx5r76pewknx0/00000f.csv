@@ -1,0 +1,65 @@
+"0","lapply(list(""survey"", ""tidyverse"", ""PNADcIBGE"", ""future"", ""future.apply"", ""progressr"", ""data.table"", ""patchwork"", ""kableExtra""), function(x) {library(x, character.only = TRUE)})"
+"1","[[1]]
+ [1] ""kableExtra""   ""modelsummary"" ""patchwork""    ""data.table""   ""progressr""    ""future.apply""
+ [7] ""future""       ""PNADcIBGE""    ""lubridate""    ""forcats""      ""stringr""      ""dplyr""       
+[13] ""purrr""        ""readr""        ""tidyr""        ""tibble""       ""ggplot2""      ""tidyverse""   
+[19] ""survey""       ""survival""     ""Matrix""       ""grid""         ""stats""        ""graphics""    
+[25] ""grDevices""    ""utils""        ""datasets""     ""methods""      ""base""        
+
+[[2]]
+ [1] ""kableExtra""   ""modelsummary"" ""patchwork""    ""data.table""   ""progressr""    ""future.apply""
+ [7] ""future""       ""PNADcIBGE""    ""lubridate""    ""forcats""      ""stringr""      ""dplyr""       
+[13] ""purrr""        ""readr""        ""tidyr""        ""tibble""       ""ggplot2""      ""tidyverse""   
+[19] ""survey""       ""survival""     ""Matrix""       ""grid""         ""stats""        ""graphics""    
+[25] ""grDevices""    ""utils""        ""datasets""     ""methods""      ""base""        
+
+[[3]]
+ [1] ""kableExtra""   ""modelsummary"" ""patchwork""    ""data.table""   ""progressr""    ""future.apply""
+ [7] ""future""       ""PNADcIBGE""    ""lubridate""    ""forcats""      ""stringr""      ""dplyr""       
+[13] ""purrr""        ""readr""        ""tidyr""        ""tibble""       ""ggplot2""      ""tidyverse""   
+[19] ""survey""       ""survival""     ""Matrix""       ""grid""         ""stats""        ""graphics""    
+[25] ""grDevices""    ""utils""        ""datasets""     ""methods""      ""base""        
+
+[[4]]
+ [1] ""kableExtra""   ""modelsummary"" ""patchwork""    ""data.table""   ""progressr""    ""future.apply""
+ [7] ""future""       ""PNADcIBGE""    ""lubridate""    ""forcats""      ""stringr""      ""dplyr""       
+[13] ""purrr""        ""readr""        ""tidyr""        ""tibble""       ""ggplot2""      ""tidyverse""   
+[19] ""survey""       ""survival""     ""Matrix""       ""grid""         ""stats""        ""graphics""    
+[25] ""grDevices""    ""utils""        ""datasets""     ""methods""      ""base""        
+
+[[5]]
+ [1] ""kableExtra""   ""modelsummary"" ""patchwork""    ""data.table""   ""progressr""    ""future.apply""
+ [7] ""future""       ""PNADcIBGE""    ""lubridate""    ""forcats""      ""stringr""      ""dplyr""       
+[13] ""purrr""        ""readr""        ""tidyr""        ""tibble""       ""ggplot2""      ""tidyverse""   
+[19] ""survey""       ""survival""     ""Matrix""       ""grid""         ""stats""        ""graphics""    
+[25] ""grDevices""    ""utils""        ""datasets""     ""methods""      ""base""        
+
+[[6]]
+ [1] ""kableExtra""   ""modelsummary"" ""patchwork""    ""data.table""   ""progressr""    ""future.apply""
+ [7] ""future""       ""PNADcIBGE""    ""lubridate""    ""forcats""      ""stringr""      ""dplyr""       
+[13] ""purrr""        ""readr""        ""tidyr""        ""tibble""       ""ggplot2""      ""tidyverse""   
+[19] ""survey""       ""survival""     ""Matrix""       ""grid""         ""stats""        ""graphics""    
+[25] ""grDevices""    ""utils""        ""datasets""     ""methods""      ""base""        
+
+[[7]]
+ [1] ""kableExtra""   ""modelsummary"" ""patchwork""    ""data.table""   ""progressr""    ""future.apply""
+ [7] ""future""       ""PNADcIBGE""    ""lubridate""    ""forcats""      ""stringr""      ""dplyr""       
+[13] ""purrr""        ""readr""        ""tidyr""        ""tibble""       ""ggplot2""      ""tidyverse""   
+[19] ""survey""       ""survival""     ""Matrix""       ""grid""         ""stats""        ""graphics""    
+[25] ""grDevices""    ""utils""        ""datasets""     ""methods""      ""base""        
+
+[[8]]
+ [1] ""kableExtra""   ""modelsummary"" ""patchwork""    ""data.table""   ""progressr""    ""future.apply""
+ [7] ""future""       ""PNADcIBGE""    ""lubridate""    ""forcats""      ""stringr""      ""dplyr""       
+[13] ""purrr""        ""readr""        ""tidyr""        ""tibble""       ""ggplot2""      ""tidyverse""   
+[19] ""survey""       ""survival""     ""Matrix""       ""grid""         ""stats""        ""graphics""    
+[25] ""grDevices""    ""utils""        ""datasets""     ""methods""      ""base""        
+
+[[9]]
+ [1] ""kableExtra""   ""modelsummary"" ""patchwork""    ""data.table""   ""progressr""    ""future.apply""
+ [7] ""future""       ""PNADcIBGE""    ""lubridate""    ""forcats""      ""stringr""      ""dplyr""       
+[13] ""purrr""        ""readr""        ""tidyr""        ""tibble""       ""ggplot2""      ""tidyverse""   
+[19] ""survey""       ""survival""     ""Matrix""       ""grid""         ""stats""        ""graphics""    
+[25] ""grDevices""    ""utils""        ""datasets""     ""methods""      ""base""        
+
+"
