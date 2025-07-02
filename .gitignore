@@ -1,9 +1,9 @@
-<<<<<<< HEAD
+
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
-=======
+
 # Arquivos gerados pelo Quarto
 *.html
 *_files/
@@ -20,4 +20,3 @@ search.json
 # Dados output
 dados/saidas/
 
->>>>>>> 5f9870f4abc3041c5190c596ebabac195f1b0896
