@@ -23,10 +23,12 @@ website:
 
 format:
   html:
+    include-in-header: goatcounter.html
     theme: lux
     font: lato
     toc: true
     css: assets/styles.css
+
 
 editor: source
 
