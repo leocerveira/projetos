@@ -1,25 +1,0 @@
-"0","with_progress({
-  p <- progressor(along = anos)
-  
-  res1 <- future_lapply(seq_along(anos), function(i) {
-    calcula_media(dados[[i]])
-  })
-})
-"
-"2","  |                                                                                                                                   |                                                                                                                           |   0%"
-"2","                                                                                                                                    "
-"2","Warning :NAs introduzidos por coerção
-"
-"2","Warning :NAs introduzidos por coerção
-"
-"2","Warning :NAs introduzidos por coerção
-"
-"2","Warning :NAs introduzidos por coerção
-"
-"2","Warning :NAs introduzidos por coerção
-"
-"2","                                                                                                                                      |                                                                                                                                   |                                                                                                                           |   0%
-Progress interrupted by FutureError condition: MultisessionFuture (future_lapply-1) failed to call grmall() on cluster RichSOCKnode #3 (PID 21656 on localhost ‘localhost’). The reason reported was ‘erro ao escrever na conexão’. Post-mortem diagnostic: Failed to determined whether a process with this PID exists or not, i.e. cannot infer whether localhost worker is alive or not. The total size of the 9 globals exported is 3.77 GiB. The three largest globals are ‘dados’ (3.77 GiB of class ‘list’), ‘update’ (9.57 KiB of class ‘function’) and ‘calcula_media’ (3.83 KiB of class ‘function’)
-"
-"2","G1;Erro: MultisessionFuture (future_lapply-1) failed to call grmall() on cluster RichSOCKnode #3 (PID 21656 on localhost ‘localhost’). The reason reported was ‘erro ao escrever na conexão’. Post-mortem diagnostic: Failed to determined whether a process with this PID exists or not, i.e. cannot infer whether localhost worker is alive or not. The total size of the 9 globals exported is 3.77 GiB. The three largest globals are ‘dados’ (3.77 GiB of class ‘list’), ‘update’ (9.57 KiB of class ‘function’) and ‘calcula_media’ (3.83 KiB of class ‘function’)
-g"
