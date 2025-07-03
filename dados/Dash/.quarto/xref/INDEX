@@ -1,29 +1,5 @@
 {
   "index.qmd": {
-    "index.html": "b792dd34"
-  },
-  "about.qmd": {
-    "about.html": "b1b2a347"
-  },
-  "analise_pib.qmd": {
-    "analise_pib.html": "9054f552"
-  },
-  "barraqueiros.qmd": {
-    "barraqueiros.html": "0a822410"
-  },
-  "carta_macro.qmd": {
-    "carta_macro.html": "dd939269"
-  },
-  "pnad.qmd": {
-    "pnad.html": "bbd52a18"
-  },
-  "covid_analise.qmd": {
-    "covid_analise.html": "837f55ef"
-  },
-  "ipea_prova.qmd": {
-    "ipea_prova.html": "9c225095"
-  },
-  "violencia_rural.qmd": {
-    "violencia_rural.html": "7a7046e3"
+    "index.html": "8b9b82d6"
   }
 }

@@ -1,0 +1,26 @@
+---
+title: "Meu Portfólio de Análise de Dados"
+format: html
+---
+
+## Aqui você encontrará análises e visualizações feitas em R.
+
+#### Descrição:
+
+-   **Projeto Barraqueiros**: trabalho feito de acordo com uma pesquisa de campo com trablhadores da Praia de Copacabana.
+
+-   **Análise da COVID-19**: visualizações de casos e óbitos registrados de Coronavírus no Brasil.
+
+-   **Análise PIB**: características básicas regionais do PIB brasileiro.
+
+-   **Carta Macro**: análise das trajetórias de variáveis de investimento e atividade econômica.
+
+-   **PNADc - Renda**: visualizações que exploram a desigualdade de renda entre grupos sociais do país (em andamento).
+
+-   **Desmatamento e Violência em Municípios do Campo**: o desmatamento e sua relação com níveis de violência no meio rural brasileiro (em andamento).
+
+-   **RAIS - Desigualdade Racial**: uso da Rais para identificar disparidades de renda ligadas a cor ou raça.
+
+    ### 
+
+    [Sobre](about.qmd)
