@@ -28,4 +28,6 @@ format:
     font: lato
     toc: true
     css: ../assets/styles.css
+    link-external-newwindow: true
+    link-external-icon: true  
 
